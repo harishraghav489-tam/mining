@@ -8,6 +8,8 @@ node_modules/
 .next/
 **/.next/
 out/
+**/out/
+out-pages/
 build/
 dist/
 
