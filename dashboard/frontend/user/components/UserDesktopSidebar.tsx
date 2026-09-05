@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, Bell, ShieldCheck, User, Shield, Radio, ExternalLink } from 'lucide-react';
+import { Home, Bell, ShieldCheck, User, Shield } from 'lucide-react';
 import { useSimulation } from '../hooks/useSimulation';
 
 export function UserDesktopSidebar() {
@@ -81,19 +81,6 @@ export function UserDesktopSidebar() {
           );
         })}
       </nav>
-
-      {/* Switch to Admin link */}
-      <div className="p-4 border-t border-slate-100">
-        <a
-          href="http://localhost:3000"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center gap-1.5 w-full py-2 px-3 text-xs font-semibold rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition"
-        >
-          <ExternalLink className="w-3.5 h-3.5 text-slate-500" />
-          <span>Open Admin Dashboard (3000)</span>
-        </a>
-      </div>
 
       {/* Footer info */}
       <div className="p-4 border-t border-slate-100 text-center text-[10px] text-slate-400">

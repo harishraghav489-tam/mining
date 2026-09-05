@@ -101,7 +101,7 @@ const landingHtml = `<!DOCTYPE html>
             <span class="px-3 py-1 rounded-md bg-rose-950 text-rose-300 border border-rose-800/80 text-xs font-bold uppercase tracking-wider">
               Desktop Control Center
             </span>
-            <span class="text-xs font-mono text-slate-500">Port 3000 PWA</span>
+            <span class="text-xs font-mono text-slate-500">Admin Portal</span>
           </div>
           <div>
             <h2 class="text-2xl font-black text-white group-hover:text-rose-400 transition">
@@ -146,7 +146,7 @@ const landingHtml = `<!DOCTYPE html>
             <span class="px-3 py-1 rounded-md bg-emerald-950 text-emerald-300 border border-emerald-800/80 text-xs font-bold uppercase tracking-wider">
               Field Mobile PWA
             </span>
-            <span class="text-xs font-mono text-slate-500">Port 3001 PWA</span>
+            <span class="text-xs font-mono text-slate-500">Worker Companion</span>
           </div>
           <div>
             <h2 class="text-2xl font-black text-white group-hover:text-emerald-400 transition">

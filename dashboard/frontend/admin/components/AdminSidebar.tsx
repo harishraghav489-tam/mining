@@ -90,20 +90,6 @@ export function AdminSidebar() {
         )}
       </div>
 
-      {/* Hardware Connection Status Indicator */}
-      <div className="mx-3 mt-3 px-3 py-2 rounded-md bg-slate-950/40 border border-slate-800 flex items-center justify-between text-xs">
-        <div className="flex items-center gap-2">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-          </span>
-          <span className="text-slate-300 font-medium">Gateway 01</span>
-        </div>
-        <span className="text-[10px] font-mono text-emerald-400 bg-emerald-950/50 px-1.5 py-0.5 rounded border border-emerald-800/50">
-          LoRa MQTT
-        </span>
-      </div>
-
       {/* Navigation Items */}
       <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
         {navItems.map((item) => {
@@ -139,19 +125,6 @@ export function AdminSidebar() {
           );
         })}
       </nav>
-
-      {/* Switch to User PWA quick link for judges */}
-      <div className="px-4 py-2 border-t border-slate-800/80">
-        <a
-          href="http://localhost:3001"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 w-full py-2 px-3 text-xs font-semibold rounded-md bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition"
-        >
-          <Radio className="w-3.5 h-3.5 text-mineguard-400" />
-          <span>Open Worker PWA App (Port 3001)</span>
-        </a>
-      </div>
 
       {/* Bottom SIH Branding Footer */}
       <div className="p-4 border-t border-slate-800 bg-slate-950/80 text-xs">

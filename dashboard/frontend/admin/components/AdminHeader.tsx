@@ -19,28 +19,9 @@ import { Language } from '../../shared/utils';
 
 export function AdminHeader() {
   const { state, t, setMode, changeLanguage, ackAlert } = useSimulation();
-  const [timeStr, setTimeStr] = useState('');
   const [showLangMenu, setShowLangMenu] = useState(false);
   const [showNotifMenu, setShowNotifMenu] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
-
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      setTimeStr(
-        now.toLocaleDateString('en-GB', {
-          day: '2-digit',
-          month: 'short',
-          year: 'numeric',
-        }) +
-          ' ' +
-          now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })
-      );
-    };
-    updateTime();
-    const timer = setInterval(updateTime, 1000);
-    return () => clearInterval(timer);
-  }, []);
 
   const unreadAlerts = state.alerts.filter((a) => !a.acknowledged);
   const criticalAlerts = unreadAlerts.filter((a) => a.severity === 'Critical');
@@ -68,13 +49,9 @@ export function AdminHeader() {
             <h1 className="text-sm sm:text-base font-bold text-slate-900 tracking-tight">
               Mine Site Alpha
             </h1>
-            <span className="hidden sm:inline-block text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
+            <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
               Sector IV • Open Pit
             </span>
-          </div>
-          <div className="flex items-center gap-2 text-[10px] sm:text-xs text-slate-500 font-mono">
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-            <span>{timeStr || '03 Sep 2026, 10:30:00'}</span>
           </div>
         </div>
       </div>
