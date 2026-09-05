@@ -230,6 +230,20 @@ export function GisMineMap({
       }
 
       setIsLeafletReady(true);
+
+      // Invalidate size after layout settles to prevent tile duplication
+      setTimeout(() => {
+        if (mapInstanceRef.current) {
+          mapInstanceRef.current.invalidateSize();
+        }
+      }, 250);
+
+      const handleResize = () => {
+        if (mapInstanceRef.current) {
+          mapInstanceRef.current.invalidateSize();
+        }
+      };
+      window.addEventListener('resize', handleResize);
     });
 
     return () => {

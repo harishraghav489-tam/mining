@@ -49,7 +49,7 @@ export function SafeStatusHero({ onViewMap }: SafeStatusHeroProps) {
           onClick={onViewMap}
           className="w-full py-3 px-4 rounded-2xl bg-white hover:bg-emerald-100 text-emerald-900 border border-emerald-300 font-bold text-xs shadow-xs transition flex items-center justify-center gap-2"
         >
-          <span>{t('user.safeCard.viewMap')}</span>
+          <span>View Evacuation Protocol & Safe Assembly Guide</span>
           <ArrowRight className="w-3.5 h-3.5 text-emerald-700" />
         </button>
       </div>

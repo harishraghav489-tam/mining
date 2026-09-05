@@ -9,12 +9,16 @@ export function PwaRegister() {
   const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
-    // Register Service Worker
+    // Register Service Worker with dynamic subpath detection
     if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
+      const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+      const swUrl = `${basePath}/sw.js`;
+      const scopeUrl = `${basePath}/` || '/';
+
       navigator.serviceWorker
-        .register('/sw.js')
+        .register(swUrl, { scope: scopeUrl })
         .then((registration) => {
-          console.log('MineGuard Worker PWA SW registered:', registration.scope);
+          console.log('MineGuard Worker PWA SW registered successfully:', registration.scope);
         })
         .catch((error) => {
           console.warn('MineGuard Worker PWA SW registration failed:', error);

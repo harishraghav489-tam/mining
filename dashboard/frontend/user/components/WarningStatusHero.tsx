@@ -54,7 +54,7 @@ export function WarningStatusHero({ onViewMap }: WarningStatusHeroProps) {
           onClick={onViewMap}
           className="w-full py-3 px-4 rounded-2xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs shadow-xs transition flex items-center justify-center gap-2"
         >
-          <span>{t('user.warningCard.viewMap')}</span>
+          <span>View Evacuation Protocol & Safety Procedure</span>
           <ArrowRight className="w-3.5 h-3.5" />
         </button>
       </div>
