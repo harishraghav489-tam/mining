@@ -392,12 +392,12 @@ export function GisMineMap({
 
   return (
     <div
-      className={`bg-slate-950 rounded-2xl sm:rounded-3xl border border-slate-800 shadow-xl overflow-hidden flex flex-col relative select-none w-full ${
+      className={`isolate relative z-0 bg-slate-950 rounded-2xl sm:rounded-3xl border border-slate-800 shadow-xl overflow-hidden flex flex-col select-none w-full ${
         fullHeight ? 'h-full min-h-[500px]' : isUserView ? 'h-[280px] sm:h-[340px]' : 'h-[360px] sm:h-[460px]'
       }`}
     >
       {/* Top HUD Toolbar - Responsive */}
-      <div className="absolute top-0 left-0 right-0 z-[400] px-3 py-2 sm:px-4 sm:py-3 bg-gradient-to-b from-slate-950/95 via-slate-950/80 to-transparent flex flex-wrap items-center justify-between gap-2 pointer-events-auto">
+      <div className="absolute top-0 left-0 right-0 z-20 px-3 py-2 sm:px-4 sm:py-3 bg-gradient-to-b from-slate-950/95 via-slate-950/80 to-transparent flex flex-wrap items-center justify-between gap-2 pointer-events-auto">
         <div className="flex items-center gap-2">
           <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-mineguard-800 text-white flex items-center justify-center border border-mineguard-600/40 shrink-0">
             <Satellite className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-rose-200" />
@@ -506,11 +506,11 @@ export function GisMineMap({
 
       {/* Leaflet SDK Map View */}
       <div className="relative flex-1 w-full h-full bg-slate-950">
-        <div ref={mapContainerRef} className="w-full h-full min-h-[260px] z-[100]" />
+        <div ref={mapContainerRef} className="w-full h-full min-h-[260px] z-0 relative" />
       </div>
 
       {/* Bottom InSAR Legend Overlay */}
-      <div className="absolute bottom-2 left-2 z-[400] bg-slate-950/90 backdrop-blur-md border border-slate-800 rounded-lg p-2 text-white shadow-xl pointer-events-auto max-w-[220px] sm:max-w-xs text-[9px] sm:text-[10px]">
+      <div className="absolute bottom-2 left-2 z-20 bg-slate-950/90 backdrop-blur-md border border-slate-800 rounded-lg p-2 text-white shadow-xl pointer-events-auto max-w-[220px] sm:max-w-xs text-[9px] sm:text-[10px]">
         <div className="flex items-center justify-between mb-1">
           <span className="font-extrabold uppercase text-slate-400 tracking-wider flex items-center gap-1">
             <Satellite className="w-2.5 h-2.5 text-sky-400" />

@@ -23,7 +23,7 @@ export function CriticalAlertModal({ isOpen, onClose }: CriticalAlertModalProps)
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm animate-in fade-in">
+    <div className="fixed inset-0 z-[99999] isolate flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm animate-in fade-in">
       <div className="bg-white rounded-2xl max-w-xl w-full border border-rose-200 shadow-2xl overflow-hidden animate-in zoom-in-95 duration-150">
         {/* Modal Header */}
         <div className="bg-gradient-to-r from-rose-900 to-rose-950 text-white p-5 flex items-start justify-between">

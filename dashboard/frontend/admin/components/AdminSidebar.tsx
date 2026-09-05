@@ -174,7 +174,7 @@ export function AdminSidebar() {
 
       {/* Mobile Drawer Overlay */}
       {isMobileOpen && (
-        <div className="fixed inset-0 z-50 lg:hidden flex">
+        <div className="fixed inset-0 z-[99999] isolate lg:hidden flex">
           {/* Backdrop */}
           <div
             onClick={() => setIsMobileOpen(false)}
