@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "buildCommand": "cd dashboard && yarn install && node build-vercel.js",
+  "outputDirectory": "dashboard/out-pages",
+  "cleanUrls": true,
+  "trailingSlash": true
+}

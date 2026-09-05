@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "buildCommand": "node build-vercel.js",
+  "outputDirectory": "out-pages",
+  "cleanUrls": true,
+  "trailingSlash": true
+}

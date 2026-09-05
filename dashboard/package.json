@@ -8,7 +8,9 @@
     "dev:user": "next dev frontend/user -p 3001",
     "build:admin": "next build frontend/admin",
     "build:user": "next build frontend/user",
-    "build": "npm run build:admin && npm run build:user",
+    "build:vercel": "node build-vercel.js",
+    "build:gh-pages": "node build-gh-pages.js",
+    "build": "npm run build:vercel",
     "start:admin": "next start frontend/admin -p 3000",
     "start:user": "next start frontend/user -p 3001",
     "type-check": "tsc --noEmit"
