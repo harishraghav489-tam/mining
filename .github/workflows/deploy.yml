@@ -1,4 +1,4 @@
-name: Deploy MineGuard AI to GitHub Pages
+name: CI/CD Pipeline - Deploy to GitHub Pages & Vercel
 
 on:
   push:
@@ -12,11 +12,15 @@ permissions:
   id-token: write
 
 concurrency:
-  group: 'pages'
+  group: 'production-deployments'
   cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  # ─────────────────────────────────────────────────────────────
+  # Job 1: Build & Deploy to GitHub Pages
+  # ─────────────────────────────────────────────────────────────
+  deploy-github-pages:
+    name: Deploy to GitHub Pages
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -52,3 +56,48 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  # ─────────────────────────────────────────────────────────────
+  # Job 2: Build & Deploy to Vercel (via GitHub Actions)
+  # ─────────────────────────────────────────────────────────────
+  deploy-vercel:
+    name: Deploy to Vercel
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'yarn'
+          cache-dependency-path: 'dashboard/yarn.lock'
+
+      - name: Install Dependencies
+        working-directory: dashboard
+        run: yarn install --frozen-lockfile
+
+      - name: Build Static PWA Bundle for Vercel
+        working-directory: dashboard
+        run: node build-vercel.js
+
+      - name: Deploy to Vercel Production
+        if: env.VERCEL_TOKEN != ''
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod'
+          working-directory: ./
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
+      - name: Trigger Vercel Deploy Hook (Alternative)
+        if: env.VERCEL_DEPLOY_HOOK != '' && env.VERCEL_TOKEN == ''
+        run: |
+          curl -X POST "${{ secrets.VERCEL_DEPLOY_HOOK }}"
+        env:
+          VERCEL_DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
