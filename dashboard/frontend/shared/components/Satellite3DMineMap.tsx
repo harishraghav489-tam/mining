@@ -13,7 +13,7 @@ import {
   Radio,
   Sliders,
 } from 'lucide-react';
-import { useSimulation } from '../../admin/hooks/useSimulation';
+import { useSimulation } from '../hooks/useSimulation';
 import { SensorNode } from '../types';
 
 interface Satellite3DMineMapProps {

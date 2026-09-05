@@ -21,6 +21,25 @@ import { useSimulation } from '../hooks/useSimulation';
 export function AdminSidebar() {
   const pathname = usePathname();
   const { state, t } = useSimulation();
+  const [isMobileOpen, setIsMobileOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleOpen = () => setIsMobileOpen(true);
+    const handleClose = () => setIsMobileOpen(false);
+
+    window.addEventListener('open-admin-sidebar', handleOpen);
+    window.addEventListener('close-admin-sidebar', handleClose);
+
+    return () => {
+      window.removeEventListener('open-admin-sidebar', handleOpen);
+      window.removeEventListener('close-admin-sidebar', handleClose);
+    };
+  }, []);
+
+  // Close mobile drawer when route changes
+  React.useEffect(() => {
+    setIsMobileOpen(false);
+  }, [pathname]);
 
   const unackedCount = state.alerts.filter((a) => !a.acknowledged && (a.severity === 'Critical' || a.severity === 'Warning')).length;
 
@@ -41,10 +60,10 @@ export function AdminSidebar() {
     { label: t('nav.settings'), href: '/settings', icon: Settings },
   ];
 
-  return (
-    <aside className="w-64 bg-slate-900 text-slate-200 flex flex-col shrink-0 min-h-screen border-r border-slate-800 select-none">
+  const sidebarContent = (
+    <div className="w-64 bg-slate-900 text-slate-200 flex flex-col shrink-0 min-h-screen border-r border-slate-800 select-none h-full">
       {/* Brand Header */}
-      <div className="p-5 border-b border-slate-800/80 bg-slate-950/60">
+      <div className="p-5 border-b border-slate-800/80 bg-slate-950/60 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-mineguard-700 to-mineguard-900 flex items-center justify-center text-white shadow-md shadow-mineguard-950/50 border border-mineguard-600/40">
             <ShieldCheck className="w-6 h-6 text-red-100" />
@@ -61,6 +80,14 @@ export function AdminSidebar() {
             </p>
           </div>
         </div>
+        {isMobileOpen && (
+          <button
+            onClick={() => setIsMobileOpen(false)}
+            className="lg:hidden p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800"
+          >
+            ✕
+          </button>
+        )}
       </div>
 
       {/* Hardware Connection Status Indicator */}
@@ -135,6 +162,32 @@ export function AdminSidebar() {
           {t('brand.hackathon')}
         </p>
       </div>
-    </aside>
+    </div>
+  );
+
+  return (
+    <>
+      {/* Desktop Persistent Sidebar */}
+      <aside className="hidden lg:flex shrink-0">
+        {sidebarContent}
+      </aside>
+
+      {/* Mobile Drawer Overlay */}
+      {isMobileOpen && (
+        <div className="fixed inset-0 z-50 lg:hidden flex">
+          {/* Backdrop */}
+          <div
+            onClick={() => setIsMobileOpen(false)}
+            className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm transition-opacity"
+          />
+
+          {/* Drawer Panel */}
+          <div className="relative z-10 w-64 max-w-[80vw] shadow-2xl animate-in slide-in-from-left duration-200">
+            {sidebarContent}
+          </div>
+        </div>
+      )}
+    </>
   );
 }
+
