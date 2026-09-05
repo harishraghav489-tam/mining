@@ -1,0 +1,24 @@
+@import 'leaflet/dist/leaflet.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --primary: 0 72% 35%;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased selection:bg-mineguard-800 selection:text-white pb-20 md:pb-0;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Smooth mobile transitions */
+* {
+  touch-action: manipulation;
+}

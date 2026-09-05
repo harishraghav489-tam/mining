@@ -1,0 +1,221 @@
+{
+  "brand": {
+    "name": "MineGuard AI",
+    "tagline": "Safer Mines. Smarter Tomorrow.",
+    "slogan": "Monitor • Predict • Prevent",
+    "hackathon": "Smart India Hackathon 2026 Prototype"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "liveMonitoring": "Live Monitoring",
+    "mapView": "Map View",
+    "alerts": "Alerts",
+    "analytics": "Analytics",
+    "reports": "Reports",
+    "satellite": "Satellite / InSAR",
+    "userManagement": "User Management",
+    "settings": "Settings",
+    "home": "Home",
+    "updates": "Updates",
+    "safetyTips": "Safety Tips",
+    "profile": "My Profile"
+  },
+  "status": {
+    "safe": "SAFE",
+    "warning": "WARNING",
+    "critical": "CRITICAL",
+    "normal": "NORMAL",
+    "online": "Online",
+    "offline": "Offline",
+    "real": "ACTIVE IOT NODE",
+    "simulated": "ACTIVE IOT NODE",
+    "acknowledged": "Acknowledged",
+    "unacknowledged": "Unacknowledged"
+  },
+  "kpis": {
+    "totalNodes": "TOTAL NODES",
+    "totalNodesSub": "9 Active Nodes • 3 Zones",
+    "activeAlerts": "ACTIVE ALERTS",
+    "activeAlertsSub": "{warning} Warning • {critical} Critical",
+    "systemStatus": "SYSTEM STATUS",
+    "systemStatusSub": "All services running",
+    "riskZones": "RISK ZONES",
+    "riskZonesSub": "{risk} Out of {total} Zones"
+  },
+  "map": {
+    "title": "3D Satellite Mine Subsidence Map",
+    "legend": "Map Legend",
+    "zoneLabel": "Multi-Zone Open Pit",
+    "realNode": "IoT Node (BNO055 + ADXL-345 + VL53L0X)",
+    "simulatedNode": "IoT Node (BNO055 + ADXL-345 + VL53L0X)",
+    "safeZone": "Stable Zone",
+    "warningZone": "Advisory Perimeter",
+    "criticalZone": "Active Instability Sector",
+    "viewFullMap": "View Full Map",
+    "zoomIn": "Zoom In",
+    "zoomOut": "Zoom Out",
+    "resetView": "Reset View",
+    "layerSatellite": "Satellite View",
+    "layerTopographic": "Mine Topo / Slope",
+    "layerHeatmap": "Deformation Heatmap"
+  },
+  "sensors": {
+    "tableTitle": "Live Sensor Telemetry",
+    "nodeCol": "Node",
+    "provenanceCol": "Provenance",
+    "tiltXCol": "Tilt X",
+    "tiltYCol": "Tilt Y",
+    "tiltRateCol": "Tilt Rate",
+    "displacementCol": "Displacement",
+    "displacementRateCol": "Disp. Rate",
+    "crackGrowthCol": "Crack Growth",
+    "statusCol": "Status",
+    "batteryCol": "Battery",
+    "signalCol": "Signal (RSSI)",
+    "lastUpdateCol": "Last Heartbeat"
+  },
+  "analytics": {
+    "title": "Geotechnical Analytics & Trend Thresholds",
+    "displacementTrend": "Displacement vs Safety Thresholds (mm)",
+    "tiltTrend": "Tri-Axial Tilt Vectors (deg)",
+    "riskTrend": "ML Risk Engine Trajectory (%)",
+    "satelliteTrend": "Satellite InSAR Cumulative Ground Shift (mm)",
+    "safeThreshold": "Safe Limit (3.0 mm)",
+    "warningThreshold": "Warning Limit (8.0 mm)",
+    "criticalThreshold": "Critical Limit (12.0 mm)",
+    "timeRange": "Past 12 Hours"
+  },
+  "risk": {
+    "title": "Geotechnical Risk Level",
+    "subTitle": "Computed by Machine Learning Risk Engine",
+    "scoreLabel": "Risk Probability Index",
+    "safeLabel": "SAFE (0 - 40%)",
+    "warningLabel": "WARNING (41 - 80%)",
+    "criticalLabel": "CRITICAL (81 - 100%)"
+  },
+  "alerts": {
+    "recentTitle": "Recent Incident & Event Log",
+    "viewAll": "View All Logs",
+    "timeCol": "Timestamp",
+    "nodeCol": "Node",
+    "eventCol": "Event Description",
+    "severityCol": "Severity",
+    "actionCol": "Action",
+    "acknowledge": "Acknowledge",
+    "acknowledgedBadge": "Acknowledged",
+    "criticalBannerTitle": "CRITICAL ALERT!",
+    "criticalBannerDesc": "Node 01 (Zone 01) displacement exceeded safe threshold (12.4 mm).",
+    "viewDetails": "View Details",
+    "dismiss": "Dismiss",
+    "ackSuccess": "Alert acknowledged by Mine Administrator at {time}."
+  },
+  "aiInsight": {
+    "title": "AI Geotechnical Insight",
+    "summaryTitle": "LLM Synthesis & Explanation",
+    "actionsTitle": "Recommended Mitigations",
+    "generatedAt": "Generated at {time}",
+    "confidence": "Synthesis Confidence: {score}%",
+    "disclaimer": "Notice: Geotechnical risk scores are calculated by the ML Risk Engine (XGBoost/Isolation Forest). The LLM generates natural-language operational context to assist qualified safety personnel."
+  },
+  "demo": {
+    "controllerTitle": "SIH Evaluation Demo Controller",
+    "safeBtn": "NORMAL (SAFE 18%)",
+    "warningBtn": "SIMULATE WARNING (76%)",
+    "criticalBtn": "SIMULATE CRITICAL (91%)",
+    "resetBtn": "RESET SCENARIO"
+  },
+  "user": {
+    "greeting": "Hello, {name}",
+    "staySafe": "Stay Safe Today!",
+    "amISafe": "AM I SAFE?",
+    "safeCard": {
+      "title": "MINE SAFE",
+      "desc": "All monitored zones are currently stable.",
+      "mine": "Mine Site Alpha",
+      "zone": "Zone 01 (North-East Section)",
+      "lastUpdated": "Last Updated",
+      "systemStatus": "Monitoring Status: Online",
+      "viewMap": "VIEW MINE MAP",
+      "reminder": "Your safety awareness makes the mine safer for everyone."
+    },
+    "warningCard": {
+      "badge": "BE AWARE",
+      "desc": "Some geological changes have been detected in your mine area.",
+      "affectedArea": "Affected Area: Zone 01 (North-East Section)",
+      "detectedAt": "Detected at: {time}",
+      "risk": "Risk Level: MODERATE",
+      "instruction": "Operations can continue with elevated vigilance. Follow safety guidelines and stay alert for further audible or visual updates.",
+      "viewMap": "VIEW AFFECTED AREA"
+    },
+    "criticalCard": {
+      "badge": "CRITICAL ALERT",
+      "desc": "Ground instability detected in your section.",
+      "affectedArea": "Affected Area: ZONE 01 (Central Pit / North-East Wall)",
+      "detectedAt": "Detected At: {time}",
+      "risk": "Current Risk Level: HIGH (CRITICAL)",
+      "instructionTitle": "FOLLOW MINE SAFETY INSTRUCTIONS",
+      "instruction": "Stop work immediately. Move to the designated safe assembly area.",
+      "viewRoute": "VIEW SAFE EVACUATION ROUTE",
+      "seenAlert": "I HAVE SEEN THIS ALERT",
+      "seenSuccess": "Alert acknowledgement registered. Evacuate calmly."
+    },
+    "evacuationModal": {
+      "title": "Emergency Evacuation Route Map",
+      "subtitle": "Safe corridor from Zone 01 to Assembly Point A",
+      "yourLocation": "Your Current Location (Zone 01)",
+      "dangerZone": "Danger Zone (Highwall Slope Failure Area)",
+      "safePath": "Designated Safe Corridor (Ramp 2)",
+      "assemblyPoint": "Assembly Point A (Safe Muster Shelter)",
+      "step1": "1. Cease machinery operation and secure immediate perimeter.",
+      "step2": "2. Follow green marked safety beacons along Ramp 2.",
+      "step3": "3. Do not cross the red delineated crest line.",
+      "step4": "4. Report to Safety Warden at Assembly Point A for headcount.",
+      "close": "Close Map"
+    },
+    "updatesPage": {
+      "title": "Mine Safety Updates",
+      "subtitle": "Direct broadcast from Site Safety Center",
+      "filterAll": "All Updates",
+      "filterAlerts": "Alerts Only",
+      "filterSafety": "Safety Advisories",
+      "filterSystem": "System Checks"
+    },
+    "safetyTipsPage": {
+      "title": "Mine Safety Guidelines & Protocols",
+      "subtitle": "Essential precautions for open-cast and underground personnel",
+      "alertPillar": "BE ALERT",
+      "responsiblePillar": "BE RESPONSIBLE",
+      "safePillar": "BE SAFE",
+      "precautionsTitle": "Standard Safety Precautions",
+      "emergencyProcedureTitle": "Emergency Action Procedure (6 Steps)",
+      "steps": [
+        "1. Stop work immediately when warning siren or app alert sounds.",
+        "2. Stay calm and maintain direct line of sight with coworkers.",
+        "3. Move away from highwall slopes and unstable bench edges.",
+        "4. Follow the designated green emergency evacuation route.",
+        "5. Reach Assembly Point A / designated muster zone.",
+        "6. Follow instructions from mine safety wardens and log headcount."
+      ]
+    },
+    "profilePage": {
+      "title": "Worker Profile",
+      "name": "Karthik S",
+      "role": "Mine Worker (Heavy Machinery Operator)",
+      "empId": "Employee ID",
+      "dept": "Department",
+      "mine": "Assigned Mine",
+      "zone": "Assigned Zone",
+      "phone": "Contact Phone",
+      "emergencyContact": "Emergency Contact",
+      "language": "App Language",
+      "notifications": "Push Notifications",
+      "smsAlerts": "Emergency SMS Broadcasts",
+      "editProfile": "Edit Profile Details",
+      "emergencyCall": "Call Safety Officer Hotline",
+      "logout": "Sign Out"
+    },
+    "offline": {
+      "banner": "Connection unavailable. Operating in Offline Safe Mode. Showing last verified status at {time}."
+    }
+  }
+}

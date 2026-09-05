@@ -1,0 +1,40 @@
+{
+  "name": "mineguard-ai-platform",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MineGuard AI - Industrial Mining Safety & Early Warning Platform",
+  "scripts": {
+    "dev:admin": "next dev frontend/admin -p 3000",
+    "dev:user": "next dev frontend/user -p 3001",
+    "build:admin": "next build frontend/admin",
+    "build:user": "next build frontend/user",
+    "build": "npm run build:admin && npm run build:user",
+    "start:admin": "next start frontend/admin -p 3000",
+    "start:user": "next start frontend/user -p 3001",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "date-fns": "^3.6.0",
+    "leaflet": "^1.9.4",
+    "lucide-react": "^0.453.0",
+    "next": "14.2.15",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.53.0",
+    "recharts": "^2.13.0",
+    "tailwind-merge": "^2.5.4",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@hookform/resolvers": "^3.9.0",
+    "@types/leaflet": "^1.9.14",
+    "@types/node": "^20.17.0",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.14",
+    "typescript": "^5.6.3"
+  }
+}

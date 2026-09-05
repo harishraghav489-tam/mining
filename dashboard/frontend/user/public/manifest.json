@@ -1,0 +1,68 @@
+{
+  "name": "MineGuard AI - Worker Safety Companion",
+  "short_name": "MineGuard Safety",
+  "description": "Real-time Mining Safety, Subsidence Alert & Emergency Evacuation Companion",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#065f46",
+  "theme_color": "#065f46",
+  "categories": ["safety", "utilities", "navigation"],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Am I Safe?",
+      "short_name": "Safety Status",
+      "description": "Instant live pit safety check",
+      "url": "/",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Safety Updates",
+      "short_name": "Updates",
+      "description": "Shift safety bulletins and advisories",
+      "url": "/updates",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Safety Guidelines",
+      "short_name": "Protocols",
+      "description": "Standard safety precautions & emergency action",
+      "url": "/safety",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "My Profile",
+      "short_name": "Profile",
+      "description": "Worker credentials & emergency contact hotline",
+      "url": "/profile",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}
