@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Compass,
   Rotate3d,
@@ -12,6 +12,11 @@ import {
   Layers,
   Radio,
   Sliders,
+  Maximize2,
+  Minimize2,
+  ChevronDown,
+  ChevronUp,
+  X,
 } from 'lucide-react';
 import { useSimulation } from '../hooks/useSimulation';
 import { SensorNode } from '../types';
@@ -32,6 +37,8 @@ export function Satellite3DMineMap({
   const [mapLayer, setMapLayer] = useState<'satellite' | 'insar-subsidence'>('satellite');
   const [zoom, setZoom] = useState<number>(1);
   const [selectedNode, setSelectedNode] = useState<SensorNode | null>(null);
+  const [isMaximized, setIsMaximized] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(false);
 
   const isCritical = state.mode === 'CRITICAL';
   const isWarning = state.mode === 'WARNING';
@@ -42,17 +49,102 @@ export function Satellite3DMineMap({
     return n.zoneId === activeZoneFilter;
   });
 
-  const get3DTransform = () => {
-    if (viewMode === 'satellite-ortho') {
-      return `scale(${zoom}) rotateX(0deg) rotateZ(0deg)`;
-    }
-    return `scale(${zoom}) rotateX(55deg) rotateZ(-22deg)`;
+  const toggleMaximize = () => {
+    if (isMinimized) setIsMinimized(false);
+    setIsMaximized((prev) => !prev);
   };
+
+  const toggleMinimize = () => {
+    if (isMaximized) setIsMaximized(false);
+    setIsMinimized((prev) => !prev);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isMaximized) {
+        setIsMaximized(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isMaximized]);
+
+  useEffect(() => {
+    if (isMaximized) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMaximized]);
+
+  const get3DTransform = () => {
+    const baseZoom = isMaximized ? zoom * 1.15 : zoom;
+    if (viewMode === 'satellite-ortho') {
+      return `scale(${baseZoom}) rotateX(0deg) rotateZ(0deg)`;
+    }
+    return `scale(${baseZoom}) rotateX(55deg) rotateZ(-22deg)`;
+  };
+
+  // If Minimized / Collapsed: Render sleek compact bar
+  if (isMinimized) {
+    return (
+      <div className="bg-slate-950 rounded-2xl border border-slate-800 shadow-xl p-3 sm:p-4 flex items-center justify-between text-white select-none transition-all duration-300 w-full">
+        <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+          <div className="w-8 h-8 rounded-lg bg-mineguard-800/90 text-white flex items-center justify-center border border-mineguard-600/40 shrink-0 shadow-sm">
+            <Compass className="w-4 h-4 text-rose-200" />
+          </div>
+          <div className="min-w-0">
+            <div className="flex items-center gap-1.5 flex-wrap">
+              <span className="text-xs font-extrabold text-white tracking-wide uppercase truncate">
+                3D Mining Subsidence Digital Twin
+              </span>
+              <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-slate-800 text-slate-300 border border-slate-700">
+                Minimized
+              </span>
+              <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-emerald-950 text-emerald-400 border border-emerald-800/60 font-bold hidden sm:inline">
+                Active ({activeZoneFilter})
+              </span>
+            </div>
+            <p className="text-[10px] text-slate-400 font-medium truncate">
+              3D Open-Cast Pit Relief • Click expand or maximize to restore 3D terrain
+            </p>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+          <button
+            onClick={toggleMinimize}
+            className="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white text-[11px] font-bold transition flex items-center gap-1.5 border border-slate-700 shadow-sm"
+            title={t('map.expand')}
+            aria-label="Expand Map"
+          >
+            <ChevronDown className="w-3.5 h-3.5 text-emerald-400" />
+            <span className="hidden xs:inline">{t('map.expand')}</span>
+          </button>
+          <button
+            onClick={toggleMaximize}
+            className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition border border-slate-700 shadow-sm"
+            title={t('map.maximize')}
+            aria-label="Maximize Fullscreen"
+          >
+            <Maximize2 className="w-3.5 h-3.5 text-amber-400" />
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div
-      className={`bg-slate-950 rounded-2xl border border-slate-800 shadow-xl overflow-hidden flex flex-col relative select-none ${
-        fullHeight ? 'h-full min-h-[580px]' : isUserView ? 'h-[340px]' : 'h-[480px]'
+      className={`isolate select-none transition-all duration-300 ${
+        isMaximized
+          ? 'fixed inset-0 z-[99999] w-screen h-screen rounded-none border-0 shadow-2xl bg-slate-950 flex flex-col'
+          : `relative z-0 bg-slate-950 rounded-2xl border border-slate-800 shadow-xl overflow-hidden flex flex-col ${
+              fullHeight ? 'h-full min-h-[580px]' : isUserView ? 'h-[340px]' : 'h-[480px]'
+            }`
       }`}
     >
       {/* 3D Map Top HUD: Controls & Zone Selector */}
@@ -69,6 +161,11 @@ export function Satellite3DMineMap({
               <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-emerald-950 text-emerald-400 border border-emerald-800/60 font-bold">
                 9 Nodes • 3 Zones
               </span>
+              {isMaximized && (
+                <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-rose-950 text-rose-300 border border-rose-800 font-bold animate-pulse">
+                  FULLSCREEN [ESC]
+                </span>
+              )}
             </div>
             <p className="text-[10px] text-slate-400 font-medium">
               BNO055 (Tilt) • ADXL-345 (Vibration) • VL53L0X (Laser Displacement)
@@ -76,8 +173,8 @@ export function Satellite3DMineMap({
           </div>
         </div>
 
-        {/* Zone Selector Pills */}
-        <div className="flex items-center gap-2">
+        {/* Zone Selector & Controls */}
+        <div className="flex items-center gap-2 flex-wrap justify-end">
           <div className="flex items-center bg-slate-900/90 backdrop-blur-md rounded-lg border border-slate-800 p-0.5 text-xs shadow-md">
             <button
               onClick={() => setActiveZoneFilter('ALL')}
@@ -122,32 +219,63 @@ export function Satellite3DMineMap({
             </button>
           </div>
 
-          {!isUserView && (
-            <div className="flex items-center bg-slate-900/90 backdrop-blur-md rounded-lg border border-slate-800 p-0.5 text-xs">
+          <div className="flex items-center bg-slate-900/90 backdrop-blur-md rounded-lg border border-slate-800 p-0.5 text-xs shadow-md">
+            <button
+              onClick={() => setViewMode(viewMode === '3d-isometric' ? 'satellite-ortho' : '3d-isometric')}
+              className="px-2.5 py-1 rounded text-[11px] font-semibold text-slate-300 hover:text-white transition flex items-center gap-1"
+              title="Toggle 3D Perspective"
+            >
+              <Rotate3d className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">{viewMode === '3d-isometric' ? '3D' : 'Top-Down'}</span>
+            </button>
+            <button
+              onClick={() => setZoom((z) => Math.min(z + 0.2, 2.2))}
+              className="p-1.5 text-slate-400 hover:text-white border-l border-slate-800 transition"
+              title="Zoom In"
+            >
+              <ZoomIn className="w-3.5 h-3.5" />
+            </button>
+            <button
+              onClick={() => setZoom((z) => Math.max(z - 0.2, 0.6))}
+              className="p-1.5 text-slate-400 hover:text-white border-l border-slate-800 transition"
+              title="Zoom Out"
+            >
+              <ZoomOut className="w-3.5 h-3.5" />
+            </button>
+          </div>
+
+          {/* Window / Minimize & Maximize Controls */}
+          <div className="flex items-center bg-slate-900/90 backdrop-blur-md rounded-lg border border-slate-800 shadow-md">
+            {!isMaximized && (
               <button
-                onClick={() => setViewMode(viewMode === '3d-isometric' ? 'satellite-ortho' : '3d-isometric')}
-                className="px-2.5 py-1 rounded text-[11px] font-semibold text-slate-300 hover:text-white transition flex items-center gap-1"
-                title="Toggle 3D Perspective"
+                onClick={toggleMinimize}
+                className="p-1.5 text-slate-400 hover:text-white rounded-l transition"
+                title={t('map.minimize')}
+                aria-label="Minimize Map"
               >
-                <Rotate3d className="w-3.5 h-3.5" />
-                <span>{viewMode === '3d-isometric' ? '3D' : 'Top-Down'}</span>
+                <ChevronUp className="w-3.5 h-3.5" />
               </button>
-              <button
-                onClick={() => setZoom((z) => Math.min(z + 0.2, 1.8))}
-                className="p-1.5 text-slate-400 hover:text-white border-l border-slate-800"
-                title="Zoom In"
-              >
-                <ZoomIn className="w-3.5 h-3.5" />
-              </button>
-              <button
-                onClick={() => setZoom((z) => Math.max(z - 0.2, 0.8))}
-                className="p-1.5 text-slate-400 hover:text-white border-l border-slate-800"
-                title="Zoom Out"
-              >
-                <ZoomOut className="w-3.5 h-3.5" />
-              </button>
-            </div>
-          )}
+            )}
+            <button
+              onClick={toggleMaximize}
+              className={`p-1.5 transition ${
+                isMaximized
+                  ? 'rounded bg-rose-950/60 hover:bg-rose-900 text-rose-300 font-bold flex items-center gap-1 px-2'
+                  : 'rounded-r border-l border-slate-800 text-slate-400 hover:text-white'
+              }`}
+              title={isMaximized ? t('map.restore') : t('map.maximize')}
+              aria-label={isMaximized ? 'Restore View' : 'Maximize Fullscreen'}
+            >
+              {isMaximized ? (
+                <>
+                  <Minimize2 className="w-3.5 h-3.5 text-amber-400" />
+                  <span className="text-[10px] hidden sm:inline">{t('map.restore')}</span>
+                </>
+              ) : (
+                <Maximize2 className="w-3.5 h-3.5" />
+              )}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -160,7 +288,9 @@ export function Satellite3DMineMap({
         }}
       >
         <div
-          className="relative transition-transform duration-500 ease-out origin-center flex items-center justify-center w-[820px] h-[540px]"
+          className={`relative transition-transform duration-500 ease-out origin-center flex items-center justify-center ${
+            isMaximized ? 'w-[960px] h-[640px] sm:w-[1120px] sm:h-[720px]' : 'w-[820px] h-[540px]'
+          }`}
           style={{
             transform: get3DTransform(),
             transformStyle: 'preserve-3d',

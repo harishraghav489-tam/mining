@@ -57,7 +57,12 @@
     "resetView": "रीसेट करें",
     "layerSatellite": "सैटेलाइट व्यू",
     "layerTopographic": "ढलान स्थलाकृति",
-    "layerHeatmap": "डिफॉर्मेशन हीटमैप"
+    "layerHeatmap": "डिफॉर्मेशन हीटमैप",
+    "maximize": "फुलस्क्रीन में बड़ा करें",
+    "minimize": "छोटा / सिकोड़ें",
+    "collapse": "मानचित्र सिकोड़ें",
+    "expand": "मानचित्र विस्तृत करें",
+    "restore": "सामान्य आकार में लाएं"
   },
   "sensors": {
     "tableTitle": "लाइव सेंसर डेटा",

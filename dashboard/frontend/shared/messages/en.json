@@ -57,7 +57,12 @@
     "resetView": "Reset View",
     "layerSatellite": "Satellite View",
     "layerTopographic": "Mine Topo / Slope",
-    "layerHeatmap": "Deformation Heatmap"
+    "layerHeatmap": "Deformation Heatmap",
+    "maximize": "Maximize Fullscreen",
+    "minimize": "Minimize / Collapse",
+    "collapse": "Collapse Map",
+    "expand": "Expand Map",
+    "restore": "Exit Fullscreen"
   },
   "sensors": {
     "tableTitle": "Live Sensor Telemetry",

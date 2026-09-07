@@ -16,6 +16,9 @@ import {
   Compass,
   Info,
   MapPin,
+  ChevronDown,
+  ChevronUp,
+  X,
 } from 'lucide-react';
 import { useSimulation } from '../hooks/useSimulation';
 import { SensorNode, RiskZone } from '../types';
@@ -31,7 +34,7 @@ export function GisMineMap({
   isUserView = false,
   selectedZoneId,
 }: GisMineMapProps) {
-  const { state, setMode } = useSimulation();
+  const { state, setMode, t } = useSimulation();
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<any>(null);
   const markersRef = useRef<{ [key: string]: any }>({});
@@ -43,6 +46,8 @@ export function GisMineMap({
   const [activeZone, setActiveZone] = useState<string>(selectedZoneId || 'ALL');
   const [selectedNode, setSelectedNode] = useState<SensorNode | null>(null);
   const [isLeafletReady, setIsLeafletReady] = useState(false);
+  const [isMaximized, setIsMaximized] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(false);
 
   const isCritical = state.mode === 'CRITICAL';
   const isWarning = state.mode === 'WARNING';
@@ -386,20 +391,117 @@ export function GisMineMap({
     }
   };
 
+  const triggerMapResize = () => {
+    if (!mapInstanceRef.current) return;
+    const map = mapInstanceRef.current;
+    setTimeout(() => map.invalidateSize(), 50);
+    setTimeout(() => map.invalidateSize(), 150);
+    setTimeout(() => map.invalidateSize(), 300);
+    setTimeout(() => map.invalidateSize(), 500);
+  };
+
+  const toggleMaximize = () => {
+    if (isMinimized) setIsMinimized(false);
+    setIsMaximized((prev) => !prev);
+  };
+
+  const toggleMinimize = () => {
+    if (isMaximized) setIsMaximized(false);
+    setIsMinimized((prev) => !prev);
+  };
+
+  useEffect(() => {
+    triggerMapResize();
+  }, [isMaximized, isMinimized]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isMaximized) {
+        setIsMaximized(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isMaximized]);
+
+  useEffect(() => {
+    if (isMaximized) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMaximized]);
+
   const handleZoomIn = () => mapInstanceRef.current?.zoomIn();
   const handleZoomOut = () => mapInstanceRef.current?.zoomOut();
   const handleResetView = () => mapInstanceRef.current?.flyTo(isUserView ? [23.7965, 86.4312] : [23.7945, 86.4315], 16, { duration: 1 });
 
+  // If Minimized / Collapsed: Render sleek compact bar
+  if (isMinimized) {
+    return (
+      <div className="bg-slate-950 rounded-2xl sm:rounded-3xl border border-slate-800 shadow-xl p-3 sm:p-4 flex items-center justify-between text-white select-none transition-all duration-300 w-full">
+        <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-mineguard-800 text-white flex items-center justify-center border border-mineguard-600/40 shrink-0 shadow-sm">
+            <Satellite className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-rose-200" />
+          </div>
+          <div className="min-w-0">
+            <div className="flex items-center gap-1.5 flex-wrap">
+              <span className="text-[11px] sm:text-xs font-extrabold text-white tracking-wide uppercase truncate">
+                {isUserView ? 'Sentinel-1 InSAR Mine Map' : 'Sentinel-1 InSAR Satellite Map'}
+              </span>
+              <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-slate-800 text-slate-300 border border-slate-700">
+                Minimized
+              </span>
+              <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-emerald-950 text-emerald-400 border border-emerald-800/60 font-bold hidden sm:inline">
+                Active ({activeZone})
+              </span>
+            </div>
+            <p className="text-[9px] sm:text-[10px] text-slate-400 font-medium truncate">
+              InSAR Subsidence Heatmap • Click expand or maximize to restore live view
+            </p>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+          <button
+            onClick={toggleMinimize}
+            className="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white text-[11px] font-bold transition flex items-center gap-1.5 border border-slate-700 shadow-sm"
+            title={t('map.expand')}
+            aria-label="Expand Map"
+          >
+            <ChevronDown className="w-3.5 h-3.5 text-emerald-400" />
+            <span className="hidden xs:inline">{t('map.expand')}</span>
+          </button>
+          <button
+            onClick={toggleMaximize}
+            className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition border border-slate-700 shadow-sm"
+            title={t('map.maximize')}
+            aria-label="Maximize Fullscreen"
+          >
+            <Maximize2 className="w-3.5 h-3.5 text-sky-400" />
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
-      className={`isolate relative z-0 bg-slate-950 rounded-2xl sm:rounded-3xl border border-slate-800 shadow-xl overflow-hidden flex flex-col select-none w-full ${
-        fullHeight ? 'h-full min-h-[500px]' : isUserView ? 'h-[280px] sm:h-[340px]' : 'h-[360px] sm:h-[460px]'
+      className={`isolate select-none transition-all duration-300 ${
+        isMaximized
+          ? 'fixed inset-0 z-[99999] w-screen h-screen rounded-none border-0 shadow-2xl bg-slate-950 flex flex-col'
+          : `relative z-0 bg-slate-950 rounded-2xl sm:rounded-3xl border border-slate-800 shadow-xl overflow-hidden flex flex-col w-full ${
+              fullHeight ? 'h-full min-h-[500px]' : isUserView ? 'h-[280px] sm:h-[340px]' : 'h-[360px] sm:h-[460px]'
+            }`
       }`}
     >
       {/* Top HUD Toolbar - Responsive */}
       <div className="absolute top-0 left-0 right-0 z-20 px-3 py-2 sm:px-4 sm:py-3 bg-gradient-to-b from-slate-950/95 via-slate-950/80 to-transparent flex flex-wrap items-center justify-between gap-2 pointer-events-auto">
         <div className="flex items-center gap-2">
-          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-mineguard-800 text-white flex items-center justify-center border border-mineguard-600/40 shrink-0">
+          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-mineguard-800 text-white flex items-center justify-center border border-mineguard-600/40 shrink-0 shadow-sm">
             <Satellite className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-rose-200" />
           </div>
           <div>
@@ -410,6 +512,11 @@ export function GisMineMap({
               <span className="text-[9px] font-mono px-1 rounded bg-emerald-950 text-emerald-400 border border-emerald-800/60 font-bold hidden sm:inline">
                 LOS Radar
               </span>
+              {isMaximized && (
+                <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-rose-950 text-rose-300 border border-rose-800 font-bold animate-pulse">
+                  FULLSCREEN [ESC]
+                </span>
+              )}
             </div>
             <p className="text-[9px] sm:text-[10px] text-slate-400 font-medium">
               {isUserView ? 'Live Sector Safety & Evacuation Path' : 'InSAR Subsidence Heatmap • 9 Nodes'}
@@ -418,7 +525,7 @@ export function GisMineMap({
         </div>
 
         {/* Controls - Responsive layout */}
-        <div className="flex items-center gap-1.5 sm:gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap justify-end">
           {/* Zone Selector Pills */}
           <div className="flex items-center bg-slate-900/90 backdrop-blur-md rounded-lg border border-slate-800 p-0.5 text-xs shadow-md">
             <button
@@ -481,24 +588,57 @@ export function GisMineMap({
           <div className="flex items-center bg-slate-900/90 backdrop-blur-md rounded-lg border border-slate-800 shadow-md">
             <button
               onClick={handleZoomIn}
-              className="p-1 sm:p-1.5 text-slate-400 hover:text-white rounded-l"
+              className="p-1 sm:p-1.5 text-slate-400 hover:text-white rounded-l transition"
               title="Zoom In"
             >
               <ZoomIn className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
             </button>
             <button
               onClick={handleZoomOut}
-              className="p-1 sm:p-1.5 text-slate-400 hover:text-white border-l border-r border-slate-800"
+              className="p-1 sm:p-1.5 text-slate-400 hover:text-white border-l border-r border-slate-800 transition"
               title="Zoom Out"
             >
               <ZoomOut className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
             </button>
             <button
               onClick={handleResetView}
-              className="p-1 sm:p-1.5 text-slate-400 hover:text-white rounded-r"
+              className="p-1 sm:p-1.5 text-slate-400 hover:text-white rounded-r transition"
               title="Reset"
             >
               <RotateCcw className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+            </button>
+          </div>
+
+          {/* Window / Minimize & Maximize Controls */}
+          <div className="flex items-center bg-slate-900/90 backdrop-blur-md rounded-lg border border-slate-800 shadow-md">
+            {!isMaximized && (
+              <button
+                onClick={toggleMinimize}
+                className="p-1 sm:p-1.5 text-slate-400 hover:text-white rounded-l transition"
+                title={t('map.minimize')}
+                aria-label="Minimize Map"
+              >
+                <ChevronUp className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+              </button>
+            )}
+            <button
+              onClick={toggleMaximize}
+              className={`p-1 sm:p-1.5 transition ${
+                isMaximized
+                  ? 'rounded bg-rose-950/60 hover:bg-rose-900 text-rose-300 font-bold flex items-center gap-1 px-2'
+                  : 'rounded-r border-l border-slate-800 text-slate-400 hover:text-white'
+              }`}
+              title={isMaximized ? t('map.restore') : t('map.maximize')}
+              aria-label={isMaximized ? 'Restore View' : 'Maximize Fullscreen'}
+            >
+              {isMaximized ? (
+                <>
+                  <Minimize2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-400" />
+                  <span className="text-[10px] hidden sm:inline">{t('map.restore')}</span>
+                </>
+              ) : (
+                <Maximize2 className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+              )}
             </button>
           </div>
         </div>
