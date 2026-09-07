@@ -15,7 +15,7 @@ import {
   Menu,
 } from 'lucide-react';
 import { useSimulation } from '../hooks/useSimulation';
-import { Language } from '../../shared/utils';
+import { Language, SUPPORTED_LANGUAGES } from '../../shared/utils';
 
 export function AdminHeader() {
   const { state, t, setMode, changeLanguage, ackAlert } = useSimulation();
@@ -26,11 +26,7 @@ export function AdminHeader() {
   const unreadAlerts = state.alerts.filter((a) => !a.acknowledged);
   const criticalAlerts = unreadAlerts.filter((a) => a.severity === 'Critical');
 
-  const languages: { code: Language; label: string }[] = [
-    { code: 'en', label: 'English (EN)' },
-    { code: 'ta', label: 'தமிழ் (Tamil)' },
-    { code: 'hi', label: 'हिन्दी (Hindi)' },
-  ];
+  const languages = SUPPORTED_LANGUAGES;
 
   return (
     <header className="h-16 bg-white border-b border-slate-200 px-3 sm:px-6 flex items-center justify-between sticky top-0 z-30 shadow-sm">
@@ -135,9 +131,10 @@ export function AdminHeader() {
           </button>
 
           {showLangMenu && (
-            <div className="absolute right-0 mt-1 w-44 bg-white rounded-lg shadow-lg border border-slate-200 py-1 z-50">
-              <div className="px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-400 border-b border-slate-100">
-                Select Language
+            <div className="absolute right-0 mt-1 w-52 bg-white rounded-lg shadow-xl border border-slate-200 py-1 z-50 max-h-80 overflow-y-auto">
+              <div className="px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-400 border-b border-slate-100 flex justify-between items-center">
+                <span>Select Language</span>
+                <span className="font-mono text-[9px] text-slate-400">12 Langs</span>
               </div>
               {languages.map((lang) => (
                 <button

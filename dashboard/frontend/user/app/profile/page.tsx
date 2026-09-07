@@ -6,7 +6,7 @@ import { UserDesktopSidebar } from '../../components/UserDesktopSidebar';
 import { UserHeader } from '../../components/UserHeader';
 import { OfflineBanner } from '../../components/OfflineBanner';
 import { useSimulation } from '../../hooks/useSimulation';
-import { Language } from '../../../shared/utils';
+import { Language, SUPPORTED_LANGUAGES } from '../../../shared/utils';
 import {
   User,
   Phone,
@@ -39,11 +39,7 @@ export default function ProfilePage() {
     setTimeout(() => setSaved(false), 3000);
   };
 
-  const languages: { code: Language; label: string }[] = [
-    { code: 'en', label: 'English' },
-    { code: 'ta', label: 'தமிழ்' },
-    { code: 'hi', label: 'हिन्दी' },
-  ];
+  const languages = SUPPORTED_LANGUAGES;
 
   return (
     <div className="flex min-h-screen bg-slate-50 font-sans">
@@ -143,19 +139,24 @@ export default function ProfilePage() {
                 {t('user.profilePage.language')}
               </h2>
             </div>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
               {languages.map((l) => (
                 <button
                   key={l.code}
                   onClick={() => changeLanguage(l.code)}
-                  className={`py-2.5 px-3 rounded-xl border text-xs font-bold transition flex items-center justify-center gap-1.5 ${
+                  className={`py-2.5 px-3 rounded-xl border text-xs font-bold transition flex flex-col items-center justify-center gap-0.5 ${
                     state.language === l.code
-                      ? 'bg-mineguard-800 text-white border-mineguard-900 shadow-xs'
-                      : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
+                      ? 'bg-mineguard-800 text-white border-mineguard-900 shadow-md ring-2 ring-mineguard-700/50'
+                      : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100 hover:text-slate-900'
                   }`}
                 >
-                  <span>{l.label}</span>
-                  {state.language === l.code && <CheckCircle2 className="w-3.5 h-3.5 text-rose-200" />}
+                  <div className="flex items-center gap-1">
+                    <span className="font-extrabold">{l.nativeName}</span>
+                    {state.language === l.code && <CheckCircle2 className="w-3.5 h-3.5 text-rose-300" />}
+                  </div>
+                  <span className={`text-[9px] ${state.language === l.code ? 'text-slate-200' : 'text-slate-400'}`}>
+                    {l.label}
+                  </span>
                 </button>
               ))}
             </div>

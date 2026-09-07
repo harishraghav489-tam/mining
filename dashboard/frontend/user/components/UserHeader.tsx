@@ -3,17 +3,13 @@
 import React, { useState } from 'react';
 import { Shield, Globe, Wifi, WifiOff, ChevronDown, CheckCircle2, Sliders, CheckCircle, AlertTriangle, Flame } from 'lucide-react';
 import { useSimulation } from '../hooks/useSimulation';
-import { Language } from '../../shared/utils';
+import { Language, SUPPORTED_LANGUAGES } from '../../shared/utils';
 
 export function UserHeader() {
   const { state, t, changeLanguage, setMode, toggleNetwork } = useSimulation();
   const [showLangMenu, setShowLangMenu] = useState(false);
 
-  const languages: { code: Language; label: string }[] = [
-    { code: 'en', label: 'English' },
-    { code: 'ta', label: 'தமிழ்' },
-    { code: 'hi', label: 'हिन्दी' },
-  ];
+  const languages = SUPPORTED_LANGUAGES;
 
   return (
     <header className="bg-white border-b border-slate-200 px-4 py-3 sticky top-0 z-30 shadow-xs">
@@ -118,7 +114,11 @@ export function UserHeader() {
             </button>
 
             {showLangMenu && (
-              <div className="absolute right-0 mt-1.5 w-36 bg-white rounded-xl shadow-xl border border-slate-200 py-1 z-50 animate-in fade-in">
+              <div className="absolute right-0 mt-1.5 w-48 bg-white rounded-xl shadow-2xl border border-slate-200 py-1 z-50 animate-in fade-in max-h-80 overflow-y-auto">
+                <div className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100 flex justify-between items-center">
+                  <span>Language</span>
+                  <span className="font-mono text-[9px] text-slate-400">12 Langs</span>
+                </div>
                 {languages.map((lang) => (
                   <button
                     key={lang.code}
@@ -130,7 +130,10 @@ export function UserHeader() {
                       state.language === lang.code ? 'font-bold text-mineguard-800 bg-rose-50' : 'text-slate-700'
                     }`}
                   >
-                    <span>{lang.label}</span>
+                    <div>
+                      <span className="block">{lang.nativeName}</span>
+                      <span className="block text-[9px] text-slate-400">{lang.label}</span>
+                    </div>
                     {state.language === lang.code && (
                       <CheckCircle2 className="w-3.5 h-3.5 text-mineguard-800" />
                     )}
