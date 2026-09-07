@@ -80,6 +80,15 @@ export function Satellite3DMineMap({
     };
   }, [isMaximized]);
 
+  const handleWheel = (e: React.WheelEvent) => {
+    e.preventDefault();
+    if (e.deltaY < 0) {
+      setZoom((z) => Math.min(+(z + 0.15).toFixed(2), 2.8));
+    } else {
+      setZoom((z) => Math.max(+(z - 0.15).toFixed(2), 0.5));
+    }
+  };
+
   const get3DTransform = () => {
     const baseZoom = isMaximized ? zoom * 1.15 : zoom;
     if (viewMode === 'satellite-ortho') {
@@ -229,14 +238,14 @@ export function Satellite3DMineMap({
               <span className="hidden sm:inline">{viewMode === '3d-isometric' ? '3D' : 'Top-Down'}</span>
             </button>
             <button
-              onClick={() => setZoom((z) => Math.min(z + 0.2, 2.2))}
+              onClick={() => setZoom((z) => Math.min(+(z + 0.2).toFixed(2), 2.8))}
               className="p-1.5 text-slate-400 hover:text-white border-l border-slate-800 transition"
               title="Zoom In"
             >
               <ZoomIn className="w-3.5 h-3.5" />
             </button>
             <button
-              onClick={() => setZoom((z) => Math.max(z - 0.2, 0.6))}
+              onClick={() => setZoom((z) => Math.max(+(z - 0.2).toFixed(2), 0.5))}
               className="p-1.5 text-slate-400 hover:text-white border-l border-slate-800 transition"
               title="Zoom Out"
             >
@@ -279,9 +288,10 @@ export function Satellite3DMineMap({
         </div>
       </div>
 
-      {/* 3D Perspective Canvas */}
+      {/* 3D Perspective Canvas with Wheel Zoom */}
       <div
-        className="flex-1 w-full h-full relative overflow-hidden flex items-center justify-center"
+        onWheel={handleWheel}
+        className="flex-1 w-full h-full relative overflow-hidden flex items-center justify-center cursor-grab active:cursor-grabbing"
         style={{
           perspective: '1200px',
           background: 'radial-gradient(ellipse at center, #111827 0%, #030712 100%)',

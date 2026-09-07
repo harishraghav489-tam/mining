@@ -72,25 +72,49 @@ export function GisMineMap({
       const map = L.map(mapContainerRef.current, {
         center: isUserView ? [23.7965, 86.4312] : mineCenter,
         zoom: isUserView ? 16 : 16,
-        minZoom: 13,
-        maxZoom: 19,
+        minZoom: 12,
+        maxZoom: 21,
         zoomControl: false,
         attributionControl: false,
         touchZoom: true,
         dragging: true,
+        preferCanvas: true,
+        zoomAnimation: true,
+        fadeAnimation: true,
+        markerZoomAnimation: true,
+        wheelDebounceTime: 30,
+        wheelPxPerZoomLevel: 80,
       });
 
       mapInstanceRef.current = map;
 
-      // Satellite Imagery & Dark Tiles
+      // High-Speed Buffered Satellite Imagery & Dark Tiles
+      // maxNativeZoom: 18 ensures deep zoom upscaling without hitting "Map data not available" tile placeholders
       const satelliteTile = L.tileLayer(
         'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-        { maxZoom: 19 }
+        {
+          maxNativeZoom: 18,
+          maxZoom: 21,
+          keepBuffer: 16,
+          updateWhenIdle: false,
+          updateWhenZooming: true,
+          updateInterval: 40,
+          crossOrigin: true,
+        }
       );
 
       const darkTile = L.tileLayer(
         'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
-        { maxZoom: 19, subdomains: 'abcd' }
+        {
+          maxNativeZoom: 19,
+          maxZoom: 21,
+          subdomains: 'abcd',
+          keepBuffer: 16,
+          updateWhenIdle: false,
+          updateWhenZooming: true,
+          updateInterval: 40,
+          crossOrigin: true,
+        }
       );
 
       layersRef.current = {
