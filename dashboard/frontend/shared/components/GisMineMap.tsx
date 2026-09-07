@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
+import 'leaflet/dist/leaflet.css';
 import {
   Layers,
   Satellite,
@@ -88,32 +89,28 @@ export function GisMineMap({
 
       mapInstanceRef.current = map;
 
-      // High-Speed Buffered Satellite Imagery & Dark Tiles
-      // maxNativeZoom: 18 ensures deep zoom upscaling without hitting "Map data not available" tile placeholders
+      // Ultra-Fast High-Resolution Satellite Imagery (Google Global CDN with 4-way subdomain sharding)
       const satelliteTile = L.tileLayer(
-        'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+        'https://mt{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}',
         {
-          maxNativeZoom: 18,
+          subdomains: ['0', '1', '2', '3'],
+          maxNativeZoom: 20,
           maxZoom: 21,
-          keepBuffer: 16,
+          keepBuffer: 6,
           updateWhenIdle: false,
-          updateWhenZooming: true,
-          updateInterval: 40,
-          crossOrigin: true,
+          updateWhenZooming: false,
         }
       );
 
       const darkTile = L.tileLayer(
         'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
         {
+          subdomains: 'abcd',
           maxNativeZoom: 19,
           maxZoom: 21,
-          subdomains: 'abcd',
-          keepBuffer: 16,
+          keepBuffer: 6,
           updateWhenIdle: false,
-          updateWhenZooming: true,
-          updateInterval: 40,
-          crossOrigin: true,
+          updateWhenZooming: false,
         }
       );
 
