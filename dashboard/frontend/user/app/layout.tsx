@@ -3,7 +3,7 @@ import '../styles/globals.css';
 import { PwaRegister } from '../components/PwaRegister';
 
 export const metadata: Metadata = {
-  title: 'MineGuard AI | Worker Safety Portal',
+  title: 'Subsisense AI | Worker Safety Portal',
   description: 'Mine Safety & Evacuation Guidance Companion - "Safer Mines. Smarter Tomorrow."',
   manifest: '/manifest.json',
   icons: {
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
-    title: 'MineGuard Safety',
+    title: 'Subsisense Safety',
   },
 };
 

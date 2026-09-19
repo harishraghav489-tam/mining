@@ -65,7 +65,7 @@ export default function SafetyTipsPage() {
               <span className="font-extrabold text-xs text-slate-900 block">
                 {t('user.safetyTipsPage.alertPillar')}
               </span>
-              <span className="text-[10px] text-slate-500">Scan hazards</span>
+              <span className="text-[10px] text-slate-500">{t('user.safetyTipsPage.scanHazards')}</span>
             </div>
 
             <div className="p-3.5 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-1">
@@ -73,7 +73,7 @@ export default function SafetyTipsPage() {
               <span className="font-extrabold text-xs text-slate-900 block">
                 {t('user.safetyTipsPage.responsiblePillar')}
               </span>
-              <span className="text-[10px] text-slate-500">Protect team</span>
+              <span className="text-[10px] text-slate-500">{t('user.safetyTipsPage.protectTeam')}</span>
             </div>
 
             <div className="p-3.5 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-1">
@@ -81,7 +81,7 @@ export default function SafetyTipsPage() {
               <span className="font-extrabold text-xs text-slate-900 block">
                 {t('user.safetyTipsPage.safePillar')}
               </span>
-              <span className="text-[10px] text-slate-500">Follow protocol</span>
+              <span className="text-[10px] text-slate-500">{t('user.safetyTipsPage.followProtocol')}</span>
             </div>
           </div>
 
@@ -115,7 +115,7 @@ export default function SafetyTipsPage() {
               className="w-full py-2.5 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-xs transition flex items-center justify-center gap-2"
             >
               <Navigation className="w-4 h-4" />
-              <span>View Evacuation Route Map</span>
+              <span>{t('user.safetyTipsPage.viewMapBtn')}</span>
             </button>
           </div>
 

@@ -20,16 +20,16 @@ export default function SatellitePage() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-xl font-bold text-slate-900 tracking-tight">
-                Satellite InSAR Ground Deformation Radar
+                {t('insar.pageTitle')}
               </h1>
               <p className="text-xs text-slate-500">
-                Interferometric Synthetic Aperture Radar • Sentinel-1 & NISAR Line-of-Sight measurements
+                {t('insar.pageSubtitle')}
               </p>
             </div>
             <div className="flex items-center gap-2">
               <span className="px-3 py-1 bg-sky-100 text-sky-800 border border-sky-300 rounded-md text-xs font-bold flex items-center gap-1.5">
                 <Satellite className="w-3.5 h-3.5 text-sky-700" />
-                Next Orbital Pass: 08 Sep 2026 (Sentinel-1B)
+                {t('insar.nextOrbitalPass')}
               </span>
             </div>
           </div>
@@ -38,7 +38,7 @@ export default function SatellitePage() {
           <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-sm space-y-4">
             <div className="flex items-center justify-between">
               <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
-                Multi-Temporal Cumulative Subsidence / Uplift (mm)
+                {t('insar.chartTitle')}
               </h3>
               <span className="text-xs text-slate-500">Coherence: &gt;0.88</span>
             </div>
@@ -55,7 +55,7 @@ export default function SatellitePage() {
                   <Line
                     type="monotone"
                     dataKey="cumulativeSubsidenceMm"
-                    name="Cumulative Line-of-Sight Subsidence (mm)"
+                    name={t('insar.cumulativeShift')}
                     stroke="#0284c7"
                     strokeWidth={2.5}
                     dot={{ r: 5, fill: '#0284c7' }}
@@ -68,18 +68,18 @@ export default function SatellitePage() {
           {/* InSAR Satellite Passes Table */}
           <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
             <div className="px-5 py-3 border-b border-slate-200 bg-slate-50 font-bold text-xs text-slate-900 uppercase">
-              Recent Satellite Interferometric Acquisitions
+              {t('insar.recentPasses')}
             </div>
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs">
                 <thead>
                   <tr className="border-b border-slate-200 bg-slate-50 text-slate-500 font-semibold text-[10px] uppercase">
-                    <th className="py-2.5 px-4">Pass Date</th>
-                    <th className="py-2.5 px-4">Satellite Constellation</th>
-                    <th className="py-2.5 px-4 text-right">Cumulative Shift</th>
-                    <th className="py-2.5 px-4 text-right">Annualized Velocity</th>
-                    <th className="py-2.5 px-4 text-right">Coherence Index</th>
-                    <th className="py-2.5 px-4 text-center">Zone Flag</th>
+                    <th className="py-2.5 px-4">{t('insar.passDateCol')}</th>
+                    <th className="py-2.5 px-4">{t('insar.constellationCol')}</th>
+                    <th className="py-2.5 px-4 text-right">{t('insar.cumulativeShift')}</th>
+                    <th className="py-2.5 px-4 text-right">{t('insar.velocityCol')}</th>
+                    <th className="py-2.5 px-4 text-right">{t('insar.coherenceCol')}</th>
+                    <th className="py-2.5 px-4 text-center">{t('insar.zoneFlagCol')}</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 font-medium">

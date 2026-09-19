@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mineguard-admin-v4';
+const CACHE_NAME = 'subsisense-admin-v5';
 
 // Install: Precache shell using registration scope
 self.addEventListener('install', (event) => {
@@ -77,7 +77,7 @@ self.addEventListener('fetch', (event) => {
           if (cached) return cached;
 
           const scopeCached = await caches.match(self.registration.scope);
-          return scopeCached || new Response('Offline - MineGuard Admin Active', {
+          return scopeCached || new Response('Offline - Subsisense Admin Active', {
             headers: { 'Content-Type': 'text/html' }
           });
         })

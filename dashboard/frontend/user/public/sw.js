@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mineguard-worker-v4';
+const CACHE_NAME = 'subsisense-worker-v5';
 
 // Install: Precache shell using registration scope
 self.addEventListener('install', (event) => {
@@ -76,7 +76,7 @@ self.addEventListener('fetch', (event) => {
           if (scopeCached) return scopeCached;
 
           return new Response(
-            `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>MineGuard Safety (Offline)</title><script src="https://cdn.tailwindcss.com"></script></head><body class="bg-slate-900 text-white p-6 text-center"><h1 class="text-xl font-bold text-emerald-400 mb-2">MineGuard Safety Companion</h1><p class="text-sm text-slate-300">Offline Safety Mode Active. All sensor thresholds and evacuation protocols are cached.</p></body></html>`,
+            `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Subsisense Safety (Offline)</title><script src="https://cdn.tailwindcss.com"></script></head><body class="bg-slate-900 text-white p-6 text-center"><h1 class="text-xl font-bold text-emerald-400 mb-2">Subsisense Safety Companion</h1><p class="text-sm text-slate-300">Offline Safety Mode Active. All sensor thresholds and evacuation protocols are cached.</p></body></html>`,
             { headers: { 'Content-Type': 'text/html' } }
           );
         })
@@ -114,7 +114,7 @@ self.addEventListener('fetch', (event) => {
 // Siren & Evacuation Push Notifications
 self.addEventListener('push', (event) => {
   const data = event.data ? event.data.json() : {};
-  const title = data.title || '🚨 MINEGUARD CRITICAL ALERT';
+  const title = data.title || '🚨 SUBSISENSE CRITICAL ALERT';
   const options = {
     body: data.body || 'Ground instability detected. Evacuate along Ramp 2 corridor.',
     icon: './icon-192.png',

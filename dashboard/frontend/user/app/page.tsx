@@ -47,7 +47,7 @@ export default function UserHomePage() {
                 <PhoneCall className="w-5 h-5" />
               </div>
               <div>
-                <h4 className="text-xs font-bold text-white">Safety Control Room Hotline</h4>
+                <h4 className="text-xs font-bold text-white">{t('user.hotlineTitle')}</h4>
                 <p className="text-[11px] text-slate-400 font-mono">+91 326 220 4012 (24/7)</p>
               </div>
             </div>
@@ -55,7 +55,7 @@ export default function UserHomePage() {
               href="tel:+913262204012"
               className="px-4 py-2 rounded-xl bg-mineguard-800 hover:bg-mineguard-900 text-white font-bold text-xs shadow-xs transition shrink-0"
             >
-              Call Hotline
+              {t('user.callHotline')}
             </a>
           </div>
 
@@ -65,14 +65,14 @@ export default function UserHomePage() {
               <div className="flex items-center gap-2">
                 <Bell className="w-4 h-4 text-mineguard-800" />
                 <span className="text-xs font-bold text-slate-900 uppercase tracking-wider">
-                  Latest Safety Bulletins
+                  {t('user.latestBulletins')}
                 </span>
               </div>
               <Link
                 href="/updates"
                 className="text-xs font-bold text-mineguard-800 hover:text-mineguard-900 flex items-center gap-0.5"
               >
-                <span>View All</span>
+                <span>{t('common.viewAll')}</span>
                 <ChevronRight className="w-3.5 h-3.5" />
               </Link>
             </div>

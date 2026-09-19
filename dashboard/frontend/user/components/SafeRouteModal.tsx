@@ -59,10 +59,10 @@ export function SafeRouteModal({ isOpen, onClose }: SafeRouteModalProps) {
             <div className="flex items-center justify-between">
               <span className="text-[11px] font-extrabold uppercase tracking-wider text-emerald-900 flex items-center gap-1.5">
                 <MapPin className="w-3.5 h-3.5 text-emerald-700" />
-                <span>Primary Evacuation Corridor</span>
+                <span>{t('user.evacuationModal.corridor')}</span>
               </span>
               <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-200 text-emerald-900">
-                Route #2 (North)
+                {t('user.evacuationModal.routeNum')}
               </span>
             </div>
 
@@ -70,39 +70,39 @@ export function SafeRouteModal({ isOpen, onClose }: SafeRouteModalProps) {
             <div className="flex items-center justify-between bg-white p-3 rounded-xl border border-emerald-200 text-[11px] font-semibold text-slate-800">
               <div className="text-center">
                 <span className="w-6 h-6 rounded-full bg-blue-600 text-white text-[10px] font-bold flex items-center justify-center mx-auto mb-1">
-                  YOU
+                  {t('user.evacuationModal.you')}
                 </span>
-                <span className="text-[10px] text-slate-500">Zone 01 Crest</span>
+                <span className="text-[10px] text-slate-500">{t('user.evacuationModal.zoneCrest')}</span>
               </div>
               <ArrowRight className="w-4 h-4 text-emerald-600 shrink-0" />
               <div className="text-center">
                 <span className="w-6 h-6 rounded-full bg-amber-500 text-white text-[10px] font-bold flex items-center justify-center mx-auto mb-1">
                   R2
                 </span>
-                <span className="text-[10px] text-slate-500">Haul Ramp 2</span>
+                <span className="text-[10px] text-slate-500">{t('user.evacuationModal.haulRamp')}</span>
               </div>
               <ArrowRight className="w-4 h-4 text-emerald-600 shrink-0" />
               <div className="text-center">
                 <span className="w-6 h-6 rounded-full bg-emerald-600 text-white text-[10px] font-bold flex items-center justify-center mx-auto mb-1">
                   ✓
                 </span>
-                <span className="text-[10px] text-emerald-800 font-bold">Assembly Pt A</span>
+                <span className="text-[10px] text-emerald-800 font-bold">{t('user.evacuationModal.assemblyPtA')}</span>
               </div>
             </div>
 
             <div className="flex items-center justify-between text-[11px] text-slate-600 pt-1">
               <span className="flex items-center gap-1">
                 <Clock className="w-3.5 h-3.5 text-slate-400" />
-                Est. Walk Time: <strong>3.5 mins (280m)</strong>
+                <span>{t('user.evacuationModal.estWalkTime')}</span>
               </span>
-              <span className="text-emerald-700 font-bold">Slope: 4.2% (Clear)</span>
+              <span className="text-emerald-700 font-bold">{t('user.evacuationModal.slopeClear')}</span>
             </div>
           </div>
 
           {/* 4 Step Directives */}
           <div className="space-y-2.5">
             <span className="font-extrabold text-slate-900 uppercase text-[11px] tracking-wider block">
-              Immediate Safety Instructions:
+              {t('user.evacuationModal.safetyInstructions')}
             </span>
             <div className="space-y-2 text-slate-700">
               <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-2.5">
@@ -141,7 +141,7 @@ export function SafeRouteModal({ isOpen, onClose }: SafeRouteModalProps) {
             <div className="flex items-center gap-2.5">
               <PhoneCall className="w-4 h-4 text-rose-400 shrink-0" />
               <div>
-                <span className="text-[11px] font-bold block">Safety Warden On-Duty</span>
+                <span className="text-[11px] font-bold block">{t('user.evacuationModal.wardenOnDuty')}</span>
                 <span className="text-[10px] text-slate-400 font-mono">+91 326 220 4012</span>
               </div>
             </div>
@@ -149,7 +149,7 @@ export function SafeRouteModal({ isOpen, onClose }: SafeRouteModalProps) {
               href="tel:+913262204012"
               className="px-3 py-1.5 rounded-lg bg-mineguard-800 text-white font-bold text-xs"
             >
-              Call Hotline
+              {t('user.callHotline')}
             </a>
           </div>
         </div>

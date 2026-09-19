@@ -45,10 +45,10 @@ export default function AlertsPage() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <h1 className="text-xl font-bold text-slate-900 tracking-tight">
-                Incident & Geotechnical Alert Log
+                {t('alerts.logPageTitle')}
               </h1>
               <p className="text-xs text-slate-500">
-                Audit trail of safety events, displacement threshold breaches & acknowledgement records
+                {t('alerts.logPageSubtitle')}
               </p>
             </div>
 
@@ -58,7 +58,7 @@ export default function AlertsPage() {
                 <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
                 <input
                   type="text"
-                  placeholder="Search alerts..."
+                  placeholder={t('alerts.searchPlaceholder')}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="pl-8 pr-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs focus:outline-none focus:ring-1 focus:ring-mineguard-800 w-56 shadow-xs"
@@ -70,10 +70,10 @@ export default function AlertsPage() {
                 onChange={(e) => setFilterSeverity(e.target.value)}
                 className="bg-white border border-slate-200 rounded-lg px-3 py-1.5 text-xs font-medium text-slate-700 focus:outline-none shadow-xs"
               >
-                <option value="ALL">All Severities</option>
-                <option value="Critical">Critical Only</option>
-                <option value="Warning">Warning Only</option>
-                <option value="Info">Info / System</option>
+                <option value="ALL">{t('alerts.allSeverities')}</option>
+                <option value="Critical">{t('alerts.criticalOnly')}</option>
+                <option value="Warning">{t('alerts.warningOnly')}</option>
+                <option value="Info">{t('alerts.infoSystem')}</option>
               </select>
             </div>
           </div>
@@ -84,84 +84,93 @@ export default function AlertsPage() {
               <table className="w-full text-left border-collapse text-xs">
                 <thead>
                   <tr className="bg-slate-50 border-b border-slate-200 text-slate-600 font-semibold uppercase tracking-wider text-[10px]">
-                    <th className="py-3 px-4">Severity</th>
-                    <th className="py-3 px-4">Time</th>
-                    <th className="py-3 px-4">Sensor Node</th>
-                    <th className="py-3 px-4">Incident Details</th>
-                    <th className="py-3 px-4">Status / Action</th>
+                    <th className="py-3 px-4">{t('alerts.severityCol')}</th>
+                    <th className="py-3 px-4">{t('alerts.timeCol')}</th>
+                    <th className="py-3 px-4">{t('alerts.nodeCol')}</th>
+                    <th className="py-3 px-4">{t('alerts.eventCol')}</th>
+                    <th className="py-3 px-4">{t('alerts.actionCol')}</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 font-medium">
                   {filteredAlerts.length === 0 ? (
                     <tr>
                       <td colSpan={5} className="py-8 text-center text-slate-500">
-                        No alerts matching filter criteria.
+                        {t('alerts.noAlertsFound')}
                       </td>
                     </tr>
                   ) : (
-                    filteredAlerts.map((alert) => (
-                      <tr
-                        key={alert.id}
-                        className={`hover:bg-slate-50/80 transition ${
-                          !alert.acknowledged && alert.severity === 'Critical'
-                            ? 'bg-rose-50/40'
-                            : ''
-                        }`}
-                      >
-                        {/* Severity */}
-                        <td className="py-3 px-4">
-                          <span
-                            className={`inline-flex items-center gap-1 px-2.5 py-1 rounded text-[10px] font-bold border ${getAlertSeverityColors(
-                              alert.severity
-                            )}`}
-                          >
-                            {alert.severity === 'Critical' ? (
-                              <Flame className="w-3 h-3 text-rose-700" />
-                            ) : alert.severity === 'Warning' ? (
-                              <AlertTriangle className="w-3 h-3 text-amber-700" />
-                            ) : (
-                              <Info className="w-3 h-3 text-blue-600" />
-                            )}
-                            {alert.severity}
-                          </span>
-                        </td>
+                    filteredAlerts.map((alert) => {
+                      const severityLabel =
+                        alert.severity === 'Critical'
+                          ? t('status.critical')
+                          : alert.severity === 'Warning'
+                          ? t('status.warning')
+                          : alert.severity;
 
-                        {/* Timestamp */}
-                        <td className="py-3 px-4 font-mono text-slate-500 whitespace-nowrap">
-                          {alert.timestamp}
-                        </td>
-
-                        {/* Node */}
-                        <td className="py-3 px-4">
-                          <div className="font-bold text-slate-900">{alert.nodeName}</div>
-                          <div className="text-[10px] text-slate-500">{alert.zoneName}</div>
-                        </td>
-
-                        {/* Incident Description */}
-                        <td className="py-3 px-4 max-w-md">
-                          <div className="font-bold text-slate-900 text-xs">{alert.title}</div>
-                          <div className="text-slate-600 text-[11px] mt-0.5">{alert.message}</div>
-                        </td>
-
-                        {/* Status / Acknowledge */}
-                        <td className="py-3 px-4 whitespace-nowrap">
-                          {alert.acknowledged ? (
-                            <div className="flex items-center gap-1.5 text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200 text-[11px] font-medium">
-                              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                              <span>{alert.acknowledgedBy || 'Acknowledged'}</span>
-                            </div>
-                          ) : (
-                            <button
-                              onClick={() => ackAlert(alert.id, 'Rajesh Sharma (Safety Admin)')}
-                              className="px-3 py-1.5 bg-mineguard-800 hover:bg-mineguard-900 text-white font-bold text-xs rounded-md shadow-xs transition flex items-center gap-1.5"
+                      return (
+                        <tr
+                          key={alert.id}
+                          className={`hover:bg-slate-50/80 transition ${
+                            !alert.acknowledged && alert.severity === 'Critical'
+                              ? 'bg-rose-50/40'
+                              : ''
+                          }`}
+                        >
+                          {/* Severity */}
+                          <td className="py-3 px-4">
+                            <span
+                              className={`inline-flex items-center gap-1 px-2.5 py-1 rounded text-[10px] font-bold border ${getAlertSeverityColors(
+                                alert.severity
+                              )}`}
                             >
-                              <BellRing className="w-3 h-3 text-rose-200" />
-                              <span>{t('alerts.acknowledge')}</span>
-                            </button>
-                          )}
-                        </td>
-                      </tr>
-                    ))
+                              {alert.severity === 'Critical' ? (
+                                <Flame className="w-3 h-3 text-rose-700" />
+                              ) : alert.severity === 'Warning' ? (
+                                <AlertTriangle className="w-3 h-3 text-amber-700" />
+                              ) : (
+                                <Info className="w-3 h-3 text-blue-600" />
+                              )}
+                              {severityLabel}
+                            </span>
+                          </td>
+
+                          {/* Timestamp */}
+                          <td className="py-3 px-4 font-mono text-slate-500 whitespace-nowrap">
+                            {alert.timestamp}
+                          </td>
+
+                          {/* Node */}
+                          <td className="py-3 px-4">
+                            <div className="font-bold text-slate-900">{alert.nodeName}</div>
+                            <div className="text-[10px] text-slate-500">{alert.zoneName}</div>
+                          </td>
+
+                          {/* Incident Description */}
+                          <td className="py-3 px-4 max-w-md">
+                            <div className="font-bold text-slate-900 text-xs">{alert.title}</div>
+                            <div className="text-slate-600 text-[11px] mt-0.5">{alert.message}</div>
+                          </td>
+
+                          {/* Status / Acknowledge */}
+                          <td className="py-3 px-4 whitespace-nowrap">
+                            {alert.acknowledged ? (
+                              <div className="flex items-center gap-1.5 text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200 text-[11px] font-medium">
+                                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                                <span>{alert.acknowledgedBy || t('alerts.acknowledgedBadge')}</span>
+                              </div>
+                            ) : (
+                              <button
+                                onClick={() => ackAlert(alert.id, 'Rajesh Sharma (Safety Admin)')}
+                                className="px-3 py-1.5 bg-mineguard-800 hover:bg-mineguard-900 text-white font-bold text-xs rounded-md shadow-xs transition flex items-center gap-1.5"
+                              >
+                                <BellRing className="w-3 h-3 text-rose-200" />
+                                <span>{t('alerts.acknowledge')}</span>
+                              </button>
+                            )}
+                          </td>
+                        </tr>
+                      );
+                    })
                   )}
                 </tbody>
               </table>

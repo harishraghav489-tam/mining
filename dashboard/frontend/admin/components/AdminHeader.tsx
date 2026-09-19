@@ -43,10 +43,10 @@ export function AdminHeader() {
         <div>
           <div className="flex items-center gap-2">
             <h1 className="text-sm sm:text-base font-bold text-slate-900 tracking-tight">
-              Mine Site Alpha
+              {t('header.mineSite')}
             </h1>
             <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
-              Sector IV • Open Pit
+              {t('header.sector')}
             </span>
           </div>
         </div>
@@ -56,7 +56,7 @@ export function AdminHeader() {
       <div className="hidden lg:flex items-center bg-slate-100 p-1 rounded-lg border border-slate-200 shadow-inner">
         <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-700 px-2 flex items-center gap-1.5">
           <Sliders className="w-3 h-3 text-slate-600" />
-          <span>Demo Controller:</span>
+          <span>{t('demo.controller')}</span>
         </span>
         <button
           onClick={() => setMode('SAFE')}
@@ -68,7 +68,7 @@ export function AdminHeader() {
           title="Set baseline normal operations (18% Risk)"
         >
           <CheckCircle2 className="w-3.5 h-3.5" />
-          <span>Normal (18%)</span>
+          <span>{t('demo.normal')}</span>
         </button>
         <button
           onClick={() => setMode('WARNING')}
@@ -80,7 +80,7 @@ export function AdminHeader() {
           title="Simulate bench displacement and tilt alert (76% Risk)"
         >
           <AlertTriangle className="w-3.5 h-3.5" />
-          <span>Warning (76%)</span>
+          <span>{t('demo.warning')}</span>
         </button>
         <button
           onClick={() => setMode('CRITICAL')}
@@ -92,7 +92,7 @@ export function AdminHeader() {
           title="Simulate imminent slope failure and evacuation alert (91% Risk)"
         >
           <Flame className="w-3.5 h-3.5" />
-          <span>Critical (91%)</span>
+          <span>{t('demo.critical')}</span>
         </button>
         <button
           onClick={() => setMode('SAFE')}
@@ -116,7 +116,7 @@ export function AdminHeader() {
           title="Install Desktop PWA for offline monitoring"
         >
           <Shield className="w-3.5 h-3.5 text-emerald-700" />
-          <span>PWA App</span>
+          <span>{t('common.pwaApp')}</span>
         </button>
 
         {/* Language Dropdown */}
@@ -133,7 +133,7 @@ export function AdminHeader() {
           {showLangMenu && (
             <div className="absolute right-0 mt-1 w-52 bg-white rounded-lg shadow-xl border border-slate-200 py-1 z-50 max-h-80 overflow-y-auto">
               <div className="px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-400 border-b border-slate-100 flex justify-between items-center">
-                <span>Select Language</span>
+                <span>{t('common.selectLanguage')}</span>
                 <span className="font-mono text-[9px] text-slate-400">12 Langs</span>
               </div>
               {languages.map((lang) => (
@@ -147,7 +147,7 @@ export function AdminHeader() {
                     state.language === lang.code ? 'font-bold text-mineguard-800 bg-rose-50/50' : 'text-slate-700'
                   }`}
                 >
-                  <span>{lang.label}</span>
+                  <span>{lang.nativeName} ({lang.label})</span>
                   {state.language === lang.code && <CheckCircle2 className="w-3.5 h-3.5 text-mineguard-800" />}
                 </button>
               ))}
@@ -174,15 +174,15 @@ export function AdminHeader() {
             <div className="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-xl border border-slate-200 py-2 z-50">
               <div className="px-4 py-2 border-b border-slate-100 flex items-center justify-between">
                 <span className="text-xs font-bold text-slate-800">
-                  Active Alerts ({unreadAlerts.length})
+                  {t('alerts.activeAlertsCount', { count: unreadAlerts.length })}
                 </span>
-                <span className="text-[10px] text-slate-400">Live feed</span>
+                <span className="text-[10px] text-slate-400">{t('alerts.liveFeed')}</span>
               </div>
               <div className="max-h-64 overflow-y-auto divide-y divide-slate-100">
                 {unreadAlerts.length === 0 ? (
                   <div className="px-4 py-6 text-center text-xs text-slate-500">
                     <CheckCircle2 className="w-6 h-6 text-emerald-500 mx-auto mb-1" />
-                    All alert queues clear. Operations nominal.
+                    {t('alerts.allClear')}
                   </div>
                 ) : (
                   unreadAlerts.map((alert) => (
@@ -208,7 +208,7 @@ export function AdminHeader() {
                           }}
                           className="px-2 py-1 bg-slate-900 hover:bg-mineguard-800 text-white rounded text-[10px] font-semibold transition"
                         >
-                          Acknowledge
+                          {t('alerts.acknowledge')}
                         </button>
                       </div>
                     </div>
@@ -230,7 +230,7 @@ export function AdminHeader() {
             </div>
             <div className="text-left hidden sm:block">
               <div className="text-xs font-bold text-slate-800 leading-none">Rajesh Sharma</div>
-              <div className="text-[10px] text-slate-500 leading-tight mt-0.5">Site Safety Eng.</div>
+              <div className="text-[10px] text-slate-500 leading-tight mt-0.5">{t('header.siteSafetyEng')}</div>
             </div>
             <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
           </button>
@@ -244,11 +244,11 @@ export function AdminHeader() {
               <div className="py-1">
                 <div className="px-3 py-1.5 text-slate-600 hover:bg-slate-50 flex items-center gap-2 cursor-pointer">
                   <User className="w-3.5 h-3.5 text-slate-400" />
-                  <span>Admin Credentials</span>
+                  <span>{t('header.adminCredentials')}</span>
                 </div>
                 <div className="px-3 py-1.5 text-slate-600 hover:bg-slate-50 flex items-center gap-2 cursor-pointer">
                   <Shield className="w-3.5 h-3.5 text-slate-400" />
-                  <span>Security & Audit Log</span>
+                  <span>{t('header.securityAuditLog')}</span>
                 </div>
               </div>
             </div>

@@ -21,7 +21,7 @@ import {
 } from '../mock';
 import { Language } from '../utils';
 
-export interface MineGuardState {
+export interface SubsisenseState {
   mode: SystemMode;
   selectedZoneId: string; // 'ALL' or 'ZONE-01' | 'ZONE-02' | 'ZONE-03'
   nodes: SensorNode[];
@@ -39,7 +39,9 @@ export interface MineGuardState {
   lastUpdated: string;
 }
 
-let globalState: MineGuardState = {
+export type MineGuardState = SubsisenseState;
+
+let globalState: SubsisenseState = {
   mode: 'SAFE',
   selectedZoneId: 'ZONE-01',
   nodes: JSON.parse(JSON.stringify(INITIAL_NODES)),
@@ -59,7 +61,7 @@ let globalState: MineGuardState = {
 
 if (typeof window !== 'undefined') {
   try {
-    const savedLang = localStorage.getItem('mineguard_lang') as Language;
+    const savedLang = (localStorage.getItem('subsisense_lang') || localStorage.getItem('mineguard_lang')) as Language;
     const validLangs: Language[] = ['en', 'ta', 'hi', 'te', 'kn', 'ml', 'bn', 'mr', 'gu', 'pa', 'or', 'as'];
     if (savedLang && validLangs.includes(savedLang)) {
       globalState.language = savedLang;
@@ -68,24 +70,26 @@ if (typeof window !== 'undefined') {
   } catch {}
 }
 
-const listeners = new Set<(state: MineGuardState) => void>();
+const listeners = new Set<(state: SubsisenseState) => void>();
 
 function notify() {
   const stateCopy = { ...globalState };
   listeners.forEach((listener) => listener(stateCopy));
   if (typeof window !== 'undefined') {
     try {
+      localStorage.setItem('subsisense_mode', globalState.mode);
+      localStorage.setItem('subsisense_lang', globalState.language);
       localStorage.setItem('mineguard_mode', globalState.mode);
       localStorage.setItem('mineguard_lang', globalState.language);
     } catch {}
   }
 }
 
-export function getSimulationState(): MineGuardState {
+export function getSimulationState(): SubsisenseState {
   return globalState;
 }
 
-export function subscribeToSimulation(listener: (state: MineGuardState) => void) {
+export function subscribeToSimulation(listener: (state: SubsisenseState) => void) {
   listeners.add(listener);
   listener(globalState);
   return () => {

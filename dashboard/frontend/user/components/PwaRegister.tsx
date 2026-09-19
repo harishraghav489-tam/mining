@@ -18,10 +18,10 @@ export function PwaRegister() {
       navigator.serviceWorker
         .register(swUrl, { scope: scopeUrl })
         .then((registration) => {
-          console.log('MineGuard Worker PWA SW registered successfully:', registration.scope);
+          console.log('Subsisense Worker PWA SW registered successfully:', registration.scope);
         })
         .catch((error) => {
-          console.warn('MineGuard Worker PWA SW registration failed:', error);
+          console.warn('Subsisense Worker PWA SW registration failed:', error);
         });
     }
 
@@ -78,7 +78,7 @@ export function PwaRegister() {
               <Smartphone className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-xs font-bold text-white">Install MineGuard Safety App</h4>
+              <h4 className="text-xs font-bold text-white">Install Subsisense Safety App</h4>
               <p className="text-[10px] text-slate-400">Offline alerts & instant evacuation routes</p>
             </div>
           </div>
@@ -105,7 +105,7 @@ export function PwaRegister() {
       {showToast && (
         <div className="fixed bottom-20 md:bottom-4 left-4 right-4 md:left-auto md:right-4 z-[999] bg-emerald-900 text-white border border-emerald-700 shadow-2xl rounded-xl p-3 flex items-center gap-2.5 animate-in fade-in">
           <CheckCircle2 className="w-5 h-5 text-emerald-300 shrink-0" />
-          <span className="text-xs font-bold">MineGuard Safety App installed! Works 100% offline.</span>
+          <span className="text-xs font-bold">Subsisense Safety App installed! Works 100% offline.</span>
         </div>
       )}
     </>

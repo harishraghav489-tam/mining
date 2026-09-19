@@ -50,7 +50,7 @@ export function AnalyticsCharts() {
         <div className="flex items-center gap-2">
           <BarChart3 className="w-4 h-4 text-mineguard-800" />
           <h2 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
-            Mining Subsidence & Sensor Dynamics
+            {t('analytics.dynamicsTitle')}
           </h2>
         </div>
 
@@ -63,7 +63,7 @@ export function AnalyticsCharts() {
                 : 'text-slate-500 hover:text-slate-900'
             }`}
           >
-            VL53L0X Laser (mm)
+            {t('analytics.laserTab')}
           </button>
           <button
             onClick={() => setMetric('tilt')}
@@ -73,7 +73,7 @@ export function AnalyticsCharts() {
                 : 'text-slate-500 hover:text-slate-900'
             }`}
           >
-            BNO055 Tilt (°)
+            {t('analytics.tiltTab')}
           </button>
           <button
             onClick={() => setMetric('vibration')}
@@ -83,7 +83,7 @@ export function AnalyticsCharts() {
                 : 'text-slate-500 hover:text-slate-900'
             }`}
           >
-            ADXL-345 Vibration (g)
+            {t('analytics.vibrationTab')}
           </button>
         </div>
       </div>
@@ -99,9 +99,9 @@ export function AnalyticsCharts() {
               <Tooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '4px' }} />
 
-              <ReferenceLine y={3.0} stroke="#10b981" strokeDasharray="4 4" label={{ value: 'Safe (3mm)', fill: '#10b981', fontSize: 10 }} />
-              <ReferenceLine y={8.0} stroke="#f59e0b" strokeDasharray="4 4" label={{ value: 'Warning (8mm)', fill: '#f59e0b', fontSize: 10 }} />
-              <ReferenceLine y={12.0} stroke="#dc2626" strokeWidth={1.5} label={{ value: 'Critical (12mm)', fill: '#dc2626', fontSize: 10 }} />
+              <ReferenceLine y={3.0} stroke="#10b981" strokeDasharray="4 4" label={{ value: t('analytics.safe3mm'), fill: '#10b981', fontSize: 10 }} />
+              <ReferenceLine y={8.0} stroke="#f59e0b" strokeDasharray="4 4" label={{ value: t('analytics.warning8mm'), fill: '#f59e0b', fontSize: 10 }} />
+              <ReferenceLine y={12.0} stroke="#dc2626" strokeWidth={1.5} label={{ value: t('analytics.critical12mm'), fill: '#dc2626', fontSize: 10 }} />
 
               <Line
                 type="monotone"
@@ -142,7 +142,7 @@ export function AnalyticsCharts() {
               <Tooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '4px' }} />
 
-              <ReferenceLine y={3.0} stroke="#dc2626" strokeDasharray="4 4" label={{ value: 'Critical (3.0°)', fill: '#dc2626', fontSize: 10 }} />
+              <ReferenceLine y={3.0} stroke="#dc2626" strokeDasharray="4 4" label={{ value: t('analytics.criticalTilt'), fill: '#dc2626', fontSize: 10 }} />
 
               <Line
                 type="monotone"
@@ -173,8 +173,8 @@ export function AnalyticsCharts() {
               <Tooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '4px' }} />
 
-              <ReferenceLine y={0.5} stroke="#f59e0b" strokeDasharray="4 4" label={{ value: 'Warning (0.5g)', fill: '#f59e0b', fontSize: 10 }} />
-              <ReferenceLine y={1.0} stroke="#dc2626" strokeWidth={1.5} label={{ value: 'Critical (1.0g)', fill: '#dc2626', fontSize: 10 }} />
+              <ReferenceLine y={0.5} stroke="#f59e0b" strokeDasharray="4 4" label={{ value: t('analytics.warningVib'), fill: '#f59e0b', fontSize: 10 }} />
+              <ReferenceLine y={1.0} stroke="#dc2626" strokeWidth={1.5} label={{ value: t('analytics.criticalVib'), fill: '#dc2626', fontSize: 10 }} />
 
               <Line
                 type="monotone"

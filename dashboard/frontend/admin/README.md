@@ -1,4 +1,4 @@
-# MineGuard AI — Admin Geotechnical & Safety Dashboard
+# Subsisense AI — Admin Geotechnical & Safety Dashboard
 
 > **"Safer Mines. Smarter Tomorrow."**  
 > *Smart India Hackathon (SIH) 2026 Prototype*

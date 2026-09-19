@@ -26,15 +26,15 @@ export default function SettingsPage() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-xl font-bold text-slate-900 tracking-tight">
-                System Thresholds & Hardware Architecture Configuration
+                {t('settings.pageTitle')}
               </h1>
               <p className="text-xs text-slate-500">
-                ESP32 telemetry ingestion parameters, LoRa gateway frequency & ML risk sensitivity
+                {t('settings.pageSubtitle')}
               </p>
             </div>
             {saved && (
               <span className="px-3 py-1 bg-emerald-100 text-emerald-800 border border-emerald-300 rounded-md text-xs font-bold animate-in fade-in">
-                Settings Successfully Saved!
+                {t('settings.saveSuccess')}
               </span>
             )}
           </div>
@@ -44,12 +44,12 @@ export default function SettingsPage() {
             {/* Sensor Safety Limits */}
             <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-sm space-y-4 text-xs">
               <h3 className="font-bold text-slate-900 uppercase text-[11px] tracking-wider border-b border-slate-100 pb-2">
-                Geotechnical Safety Thresholds
+                {t('settings.safetyThresholds')}
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                   <label className="block text-slate-600 font-semibold mb-1">
-                    Safe Displacement Max (mm)
+                    {t('settings.safeDispMax')}
                   </label>
                   <input
                     type="number"
@@ -60,7 +60,7 @@ export default function SettingsPage() {
                 </div>
                 <div>
                   <label className="block text-slate-600 font-semibold mb-1">
-                    Warning Displacement Max (mm)
+                    {t('settings.warningDispMax')}
                   </label>
                   <input
                     type="number"
@@ -71,7 +71,7 @@ export default function SettingsPage() {
                 </div>
                 <div>
                   <label className="block text-slate-600 font-semibold mb-1">
-                    Critical Evacuation Threshold (mm)
+                    {t('settings.criticalDispMax')}
                   </label>
                   <input
                     type="number"
@@ -86,12 +86,12 @@ export default function SettingsPage() {
             {/* Gateway LoRa & MQTT Pipeline */}
             <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-sm space-y-4 text-xs">
               <h3 className="font-bold text-slate-900 uppercase text-[11px] tracking-wider border-b border-slate-100 pb-2">
-                LoRa Gateway & MQTT Broker Pipeline
+                {t('settings.gatewayPipeline')}
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-slate-600 font-semibold mb-1">
-                    Raspberry Pi Gateway IP
+                    {t('settings.gatewayIp')}
                   </label>
                   <input
                     type="text"
@@ -101,11 +101,11 @@ export default function SettingsPage() {
                 </div>
                 <div>
                   <label className="block text-slate-600 font-semibold mb-1">
-                    MQTT Broker Topic
+                    {t('settings.mqttTopic')}
                   </label>
                   <input
                     type="text"
-                    defaultValue="mineguard/dhanbad/zone01/telemetry"
+                    defaultValue="subsisense/dhanbad/zone01/telemetry"
                     className="w-full bg-slate-50 border border-slate-200 rounded-lg p-2 font-mono"
                   />
                 </div>
@@ -115,12 +115,12 @@ export default function SettingsPage() {
             {/* ML Risk Engine Configuration */}
             <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-sm space-y-4 text-xs">
               <h3 className="font-bold text-slate-900 uppercase text-[11px] tracking-wider border-b border-slate-100 pb-2">
-                Machine Learning Risk Engine
+                {t('settings.mlEngineConfig')}
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-slate-600 font-semibold mb-1">
-                    Risk Engine Model Version
+                    {t('settings.modelVersionLabel')}
                   </label>
                   <input
                     type="text"
@@ -131,7 +131,7 @@ export default function SettingsPage() {
                 </div>
                 <div>
                   <label className="block text-slate-600 font-semibold mb-1">
-                    LLM Synthesis Engine Provider
+                    {t('settings.llmProviderLabel')}
                   </label>
                   <input
                     type="text"
@@ -148,7 +148,7 @@ export default function SettingsPage() {
               className="px-6 py-2.5 bg-mineguard-800 hover:bg-mineguard-900 text-white font-bold text-xs rounded-lg shadow-md transition flex items-center gap-2"
             >
               <Save className="w-4 h-4" />
-              <span>Save System Configuration</span>
+              <span>{t('settings.saveConfig')}</span>
             </button>
           </form>
         </main>

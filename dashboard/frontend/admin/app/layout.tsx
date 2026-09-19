@@ -3,7 +3,7 @@ import '../styles/globals.css';
 import { PwaRegister } from '../components/PwaRegister';
 
 export const metadata: Metadata = {
-  title: 'MineGuard AI | Admin Safety & Geotechnical Center',
+  title: 'Subsisense AI | Admin Safety & Geotechnical Center',
   description: 'Industrial Mining Safety, Slope Stability Monitoring & Early Warning Platform - SIH 2026',
   manifest: '/manifest.json',
   icons: {
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
-    title: 'MineGuard Admin',
+    title: 'Subsisense Admin',
   },
 };
 

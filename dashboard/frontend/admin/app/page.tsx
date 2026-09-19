@@ -15,7 +15,7 @@ import { useSimulation } from '../hooks/useSimulation';
 import { Satellite } from 'lucide-react';
 
 export default function AdminDashboardPage() {
-  const { state } = useSimulation();
+  const { state, t } = useSimulation();
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -43,10 +43,10 @@ export default function AdminDashboardPage() {
               <div className="flex items-center justify-between px-1">
                 <span className="text-xs font-extrabold text-slate-800 tracking-wider uppercase flex items-center gap-1.5">
                   <Satellite className="w-3.5 h-3.5 text-sky-600" />
-                  Live Subsidence Geotechnical Map
+                  {t('map.liveMapTitle')}
                 </span>
                 <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold border border-emerald-200">
-                  Sentinel-1 InSAR Radar Active
+                  {t('map.radarActive')}
                 </span>
               </div>
 

@@ -21,12 +21,12 @@ export function LiveSensorTable() {
         <div className="flex items-center gap-2">
           <Activity className="w-4 h-4 text-mineguard-800" />
           <h2 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
-            Live Subsidence Sensor Telemetry (9 Nodes)
+            {t('sensors.tableTitleWithCount', { count: 9 })}
           </h2>
         </div>
 
         <div className="flex items-center gap-1.5 text-xs">
-          <span className="text-[10px] text-slate-400 font-bold uppercase mr-1">Zone:</span>
+          <span className="text-[10px] text-slate-400 font-bold uppercase mr-1">{t('sensors.zoneFilter')}</span>
           <button
             onClick={() => setSelectedZone('ALL')}
             className={`px-2 py-0.5 rounded text-[10px] font-bold transition ${
@@ -35,7 +35,7 @@ export function LiveSensorTable() {
                 : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
             }`}
           >
-            All (9)
+            {t('common.allCount', { count: 9 })}
           </button>
           <button
             onClick={() => setSelectedZone('ZONE-01')}
@@ -45,7 +45,7 @@ export function LiveSensorTable() {
                 : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
             }`}
           >
-            Zone 01 (3)
+            {t('sensors.zoneOption', { zone: '01', count: 3 })}
           </button>
           <button
             onClick={() => setSelectedZone('ZONE-02')}
@@ -55,7 +55,7 @@ export function LiveSensorTable() {
                 : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
             }`}
           >
-            Zone 02 (3)
+            {t('sensors.zoneOption', { zone: '02', count: 3 })}
           </button>
           <button
             onClick={() => setSelectedZone('ZONE-03')}
@@ -65,7 +65,7 @@ export function LiveSensorTable() {
                 : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
             }`}
           >
-            Zone 03 (3)
+            {t('sensors.zoneOption', { zone: '03', count: 3 })}
           </button>
         </div>
       </div>
@@ -75,11 +75,11 @@ export function LiveSensorTable() {
         <table className="w-full text-left border-collapse text-xs">
           <thead className="sticky top-0 bg-slate-50 z-10">
             <tr className="border-b border-slate-200 text-slate-500 font-bold uppercase text-[10px] tracking-wider">
-              <th className="py-2.5 px-4">Node ID / Zone</th>
-              <th className="py-2.5 px-4 text-right">VL53L0X Laser Disp.</th>
-              <th className="py-2.5 px-4 text-right">BNO055 Tilt (X/Y)</th>
-              <th className="py-2.5 px-4 text-right">ADXL-345 Vibration</th>
-              <th className="py-2.5 px-4 text-center">Status</th>
+              <th className="py-2.5 px-4">{t('sensors.nodeZoneCol')}</th>
+              <th className="py-2.5 px-4 text-right">{t('sensors.laserDispCol')}</th>
+              <th className="py-2.5 px-4 text-right">{t('sensors.tiltCol')}</th>
+              <th className="py-2.5 px-4 text-right">{t('sensors.vibrationCol')}</th>
+              <th className="py-2.5 px-4 text-center">{t('sensors.statusCol')}</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100 font-medium">
@@ -87,6 +87,12 @@ export function LiveSensorTable() {
               const statusColors = getNodeStatusColors(node.status);
               const isDispCrit = node.displacement >= 8.0;
               const isDispWarn = node.displacement >= 3.0 && node.displacement < 8.0;
+              const statusLabel =
+                node.status === 'CRITICAL'
+                  ? t('status.critical')
+                  : node.status === 'WARNING'
+                  ? t('status.warning')
+                  : t('status.normal');
 
               return (
                 <tr
@@ -145,7 +151,7 @@ export function LiveSensorTable() {
                   {/* Status */}
                   <td className="py-2.5 px-4 text-center">
                     <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold border ${statusColors.badge}`}>
-                      {node.status}
+                      {statusLabel}
                     </span>
                   </td>
                 </tr>

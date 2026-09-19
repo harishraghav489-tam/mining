@@ -8,6 +8,19 @@ export function AiInsightPanel() {
   const { state, t } = useSimulation();
   const insight = state.aiInsight;
   const isCritical = state.mode === 'CRITICAL';
+  const isWarning = state.mode === 'WARNING';
+
+  const localizedSummary = isCritical
+    ? t('aiInsight.criticalSummary')
+    : isWarning
+    ? t('aiInsight.warningSummary')
+    : t('aiInsight.safeSummary');
+
+  const localizedActions = isCritical
+    ? [t('aiInsight.criticalAction1'), t('aiInsight.criticalAction2')]
+    : isWarning
+    ? [t('aiInsight.warningAction1'), t('aiInsight.warningAction2')]
+    : [t('aiInsight.safeAction1'), t('aiInsight.safeAction2')];
 
   return (
     <div
@@ -24,27 +37,29 @@ export function AiInsightPanel() {
             </div>
             <div>
               <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
-                AI Geotechnical Insight
+                {t('aiInsight.title')}
               </h3>
-              <p className="text-[11px] text-slate-400">Generated at {insight.generatedAt}</p>
+              <p className="text-[11px] text-slate-400">
+                {t('aiInsight.generatedAt', { time: insight.generatedAt })}
+              </p>
             </div>
           </div>
           <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">
-            LLM Layer
+            {t('aiInsight.llmLayer')}
           </span>
         </div>
 
         {/* Summary */}
         <p className="text-xs font-medium text-slate-800 leading-relaxed bg-slate-50 p-3.5 rounded-xl border border-slate-100">
-          {insight.summary}
+          {localizedSummary}
         </p>
 
         {/* Recommended Mitigations */}
         <div className="space-y-1.5 pt-1">
           <span className="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">
-            Recommended Action:
+            {t('aiInsight.recommendedAction')}
           </span>
-          {insight.recommendedActions.slice(0, 2).map((action, idx) => (
+          {localizedActions.map((action, idx) => (
             <div key={idx} className="flex items-start gap-2 text-xs text-slate-700">
               <CheckCircle2 className="w-3.5 h-3.5 text-mineguard-800 shrink-0 mt-0.5" />
               <span className="leading-snug">{action}</span>
@@ -57,7 +72,7 @@ export function AiInsightPanel() {
       <div className="mt-4 pt-2 border-t border-slate-100 flex items-start gap-1.5 text-[10px] text-slate-400">
         <Info className="w-3 h-3 shrink-0 mt-0.5 text-slate-400" />
         <p className="leading-tight">
-          Risk calculated by ML Risk Engine. LLM synthesizes operational context.
+          {t('aiInsight.disclaimer')}
         </p>
       </div>
     </div>

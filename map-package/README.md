@@ -1,6 +1,6 @@
-# MineGuard AI — Geotechnical Satellite GIS Map Package
+# Subsisense AI — Geotechnical Satellite GIS Map Package
 
-This package contains the complete, production-ready **Sentinel-1 InSAR Satellite GIS Map Component** extracted from MineGuard AI, featuring ultra-fast Google Satellite CDN streaming, interactive multi-zone heatmaps, sensor beacons, evacuation routing, and window control (Minimize & Maximize / Fullscreen) options.
+This package contains the complete, production-ready **Sentinel-1 InSAR Satellite GIS Map Component** extracted from Subsisense AI, featuring ultra-fast Google Satellite CDN streaming, interactive multi-zone heatmaps, sensor beacons, evacuation routing, and window control (Minimize & Maximize / Fullscreen) options.
 
 ---
 
@@ -85,4 +85,4 @@ export default function MyMapPage() {
 
 ---
 
-*MineGuard AI Team • Smart India Hackathon 2026*
+*Subsisense AI Team • Smart India Hackathon 2026*

@@ -94,7 +94,7 @@ function translate(pathStr, lang = 'en', params = {}) {
 
 // Test sample translations
 const testCases = [
-  { key: 'dashboard.title', lang: 'en', expected: 'MineGuard AI Dashboard' },
+  { key: 'dashboard.title', lang: 'en', expected: 'Subsisense AI Dashboard' },
   { key: 'risk.critical', lang: 'ta', expected: 'மிக அபாயகரமானது' },
   { key: 'map.evacuationRoute', lang: 'hi', expected: 'सुरक्षित निकासी मार्ग' },
   { key: 'dashboard.monitoring', lang: 'te', expected: 'లైవ్ పర్యవేక్షణ' },

@@ -1,6 +1,6 @@
-# Product Requirements Document (PRD): MineGuard AI Admin Dashboard
+# Product Requirements Document (PRD): Subsisense AI Admin Dashboard
 
-**Platform**: MineGuard AI  
+**Platform**: Subsisense AI  
 **Sub-Application**: Admin Safety & Geotechnical Monitoring Center  
 **Tagline**: "Safer Mines. Smarter Tomorrow."  
 **Target Event**: Smart India Hackathon (SIH) 2026 Prototype  
@@ -8,10 +8,10 @@
 ---
 
 ## 1. Product Name
-**MineGuard AI — Admin Geotechnical & Safety Operations Dashboard**
+**Subsisense AI — Admin Geotechnical & Safety Operations Dashboard**
 
 ## 2. Product Purpose
-The MineGuard AI Admin Dashboard is a desktop-first industrial safety, mining subsidence, and early-warning center designed for geotechnical engineers, site supervisors, mine administrators, and DGMS safety officers. It aggregates telemetry from multi-zone wireless field IoT sensor nodes (equipped with BNO055 9-DOF tilt & orientation, ADXL-345 3-axis vibration & acceleration, and VL53L0X laser relative displacement/subsidence), ML risk engines, and satellite InSAR data into a unified, actionable control room interface to prevent catastrophic slope failures and open-cast highwall collapses.
+The Subsisense AI Admin Dashboard is a desktop-first industrial safety, mining subsidence, and early-warning center designed for geotechnical engineers, site supervisors, mine administrators, and DGMS safety officers. It aggregates telemetry from multi-zone wireless field IoT sensor nodes (equipped with BNO055 9-DOF tilt & orientation, ADXL-345 3-axis vibration & acceleration, and VL53L0X laser relative displacement/subsidence), ML risk engines, and satellite InSAR data into a unified, actionable control room interface to prevent catastrophic slope failures and open-cast highwall collapses.
 
 ## 3. Target Users
 - **Geotechnical Engineers**: Monitoring slope subsidence velocity (mm/day), triaxial tilt vectors (pitch, roll, yaw), crack propagation, dynamic vibration amplitudes (g), and InSAR baseline trends.
@@ -100,7 +100,7 @@ The MineGuard AI Admin Dashboard is a desktop-first industrial safety, mining su
 
 ## 18. Future Backend Integration
 - FastAPI REST endpoints (`GET /api/v1/telemetry`, `POST /api/v1/alerts/ack`).
-- MQTT / WebSocket broker streaming from Raspberry Pi Gateway at `mineguard/dhanbad/zone01/telemetry`.
+- MQTT / WebSocket broker streaming from Raspberry Pi Gateway at `subsisense/dhanbad/zone01/telemetry`.
 - PostgreSQL / TimescaleDB for persistent geotechnical time-series retention.
 
 ## 19. Acceptance Criteria

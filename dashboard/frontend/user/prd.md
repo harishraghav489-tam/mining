@@ -1,6 +1,6 @@
-# Product Requirements Document (PRD): MineGuard AI Worker Safety PWA
+# Product Requirements Document (PRD): Subsisense AI Worker Safety PWA
 
-**Platform**: MineGuard AI  
+**Platform**: Subsisense AI  
 **Sub-Application**: Field Worker Safety Portal & Evacuation Companion (PWA)  
 **Tagline**: "Safer Mines. Smarter Tomorrow."  
 **Target Event**: Smart India Hackathon (SIH) 2026 Prototype  
@@ -8,10 +8,10 @@
 ---
 
 ## 1. Product Name
-**MineGuard AI — Worker Safety Companion & Evacuation Guide (Progressive Web App)**
+**Subsisense AI — Worker Safety Companion & Evacuation Guide (Progressive Web App)**
 
 ## 2. Product Purpose
-The MineGuard AI Worker PWA is a mobile-first, zero-clutter safety application designed for field workers, heavy machinery operators, and haul truck drivers inside or near the open-cast mining pit. It instantly answers the single most important question a worker has: **"AM I SAFE?"** and provides immediate, unmistakable evacuation corridor instructions during emergency conditions without overwhelming workers with complex geotechnical sensor matrices.
+The Subsisense AI Worker PWA is a mobile-first, zero-clutter safety application designed for field workers, heavy machinery operators, and haul truck drivers inside or near the open-cast mining pit. It instantly answers the single most important question a worker has: **"AM I SAFE?"** and provides immediate, unmistakable evacuation corridor instructions during emergency conditions without overwhelming workers with complex geotechnical sensor matrices.
 
 ## 3. Target Users
 - **Heavy Machinery & Excavator Operators**: Operating in open pit extraction tiers requiring immediate emergency warnings.

@@ -1,4 +1,4 @@
-# MineGuard AI — Field Worker Safety Companion (PWA)
+# Subsisense AI — Field Worker Safety Companion (PWA)
 
 > **"Safer Mines. Smarter Tomorrow."**  
 > *Smart India Hackathon (SIH) 2026 Prototype*

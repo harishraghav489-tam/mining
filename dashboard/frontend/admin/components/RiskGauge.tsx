@@ -93,17 +93,17 @@ export function RiskGauge() {
             {isCritical ? (
               <>
                 <Flame className="w-3.5 h-3.5 text-rose-700" />
-                CRITICAL HAZARD
+                {t('risk.criticalHazard')}
               </>
             ) : isWarning ? (
               <>
                 <AlertTriangle className="w-3.5 h-3.5 text-amber-700" />
-                WARNING ADVISORY
+                {t('risk.warningAdvisory')}
               </>
             ) : (
               <>
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" />
-                SAFE STABILITY
+                {t('risk.safeStability')}
               </>
             )}
           </span>
@@ -114,15 +114,15 @@ export function RiskGauge() {
       <div className="grid grid-cols-3 gap-1 text-[10px] text-center pt-2 border-t border-slate-100">
         <div className="p-1 rounded bg-emerald-50 text-emerald-800 border border-emerald-200">
           <span className="font-bold block">0 - 40%</span>
-          <span>Nominal</span>
+          <span>{t('risk.nominal')}</span>
         </div>
         <div className="p-1 rounded bg-amber-50 text-amber-800 border border-amber-200">
           <span className="font-bold block">41 - 80%</span>
-          <span>Warning</span>
+          <span>{t('risk.warning')}</span>
         </div>
         <div className="p-1 rounded bg-rose-50 text-rose-800 border border-rose-200">
           <span className="font-bold block">81 - 100%</span>
-          <span>Critical</span>
+          <span>{t('risk.critical')}</span>
         </div>
       </div>
     </div>

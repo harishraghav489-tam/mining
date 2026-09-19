@@ -22,14 +22,14 @@ export function UserHeader() {
           <div>
             <div className="flex items-center gap-1.5">
               <span className="font-extrabold text-sm tracking-tight text-slate-900">
-                MINEGUARD
+                SUBSISENSE
               </span>
               <span className="text-[10px] font-bold px-1.5 py-0.2 rounded bg-mineguard-100 text-mineguard-900">
                 AI
               </span>
             </div>
             <p className="text-[10px] text-slate-500 font-medium leading-none">
-              Safety First
+              {t('brand.safetyFirst')}
             </p>
           </div>
         </div>
@@ -47,7 +47,7 @@ export function UserHeader() {
               }`}
               title="Switch to Safe State"
             >
-              Safe
+              {t('risk.safe')}
             </button>
             <button
               onClick={() => setMode('WARNING')}
@@ -58,7 +58,7 @@ export function UserHeader() {
               }`}
               title="Switch to Warning State"
             >
-              Warning
+              {t('risk.warning')}
             </button>
             <button
               onClick={() => setMode('CRITICAL')}
@@ -69,7 +69,7 @@ export function UserHeader() {
               }`}
               title="Switch to Critical State"
             >
-              Critical
+              {t('risk.critical')}
             </button>
           </div>
 
@@ -84,7 +84,7 @@ export function UserHeader() {
             title="Install Mobile PWA App"
           >
             <Shield className="w-3 h-3 text-emerald-700" />
-            <span>Install</span>
+            <span>{t('common.install')}</span>
           </button>
 
           {/* Network Offline toggle for testing PWA */}
@@ -98,7 +98,7 @@ export function UserHeader() {
             title="Toggle Online / Offline PWA mode for demonstration"
           >
             {state.isOnline ? <Wifi className="w-3.5 h-3.5 text-emerald-600" /> : <WifiOff className="w-3.5 h-3.5 text-rose-600" />}
-            <span className="text-[10px] font-bold hidden sm:inline">{state.isOnline ? 'Online' : 'Offline'}</span>
+            <span className="text-[10px] font-bold hidden sm:inline">{state.isOnline ? t('common.online') : t('common.offline')}</span>
           </button>
 
           {/* Accessible Language Switcher */}
@@ -116,7 +116,7 @@ export function UserHeader() {
             {showLangMenu && (
               <div className="absolute right-0 mt-1.5 w-48 bg-white rounded-xl shadow-2xl border border-slate-200 py-1 z-50 animate-in fade-in max-h-80 overflow-y-auto">
                 <div className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100 flex justify-between items-center">
-                  <span>Language</span>
+                  <span>{t('user.profilePage.language')}</span>
                   <span className="font-mono text-[9px] text-slate-400">12 Langs</span>
                 </div>
                 {languages.map((lang) => (

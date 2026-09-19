@@ -1,6 +1,6 @@
-# MineGuard AI — Multilingual (i18n) Integration Guide
+# Subsisense AI — Multilingual (i18n) Integration Guide
 
-This package contains the complete, scalable, and portable **12 Indian Languages i18n System** built for the MineGuard AI Dashboard.
+This package contains the complete, scalable, and portable **12 Indian Languages i18n System** built for the Subsisense AI Dashboard.
 
 ---
 
@@ -154,5 +154,5 @@ export function Header() {
 - **ML Engine**: ML probabilities (`score: 0.92`), risk matrices, and XGBoost/Isolation Forest outputs remain 100% numerical and language-independent.
 - **Sensor Streams**: Raw telemetry values (`14.8 mm`, `4.25°`, `1.25 g`, `RSSI`, battery `%`) and coordinates (`latitude`/`longitude`) are untouched.
 - **Dynamic Key Resolution**: `t(\`risk.${level.toLowerCase()}\`)` dynamically renders the localized string.
-- **Instant Switching**: `simulationStore` broadcasts updates to all active components with `localStorage` persistence (`mineguard_lang`), requiring no full page reloads.
+- **Instant Switching**: `simulationStore` broadcasts updates to all active components with `localStorage` persistence (`subsisense_lang`), requiring no full page reloads.
 - **Fallback**: If any translation key is missing in a regional language, it automatically falls back to English (`en`).

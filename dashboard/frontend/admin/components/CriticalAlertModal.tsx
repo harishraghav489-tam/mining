@@ -33,10 +33,10 @@ export function CriticalAlertModal({ isOpen, onClose }: CriticalAlertModalProps)
             </div>
             <div>
               <span className="text-[11px] font-extrabold uppercase tracking-wider bg-rose-950 px-2 py-0.5 rounded text-rose-300 border border-rose-800">
-                CRITICAL EMERGENCY PROTOCOL
+                {t('alerts.criticalProtocol')}
               </span>
               <h3 className="text-lg font-bold text-white mt-1">
-                Zone 01 Slope Instability Detected
+                {t('alerts.slopeInstabilityDetected')}
               </h3>
             </div>
           </div>
@@ -54,35 +54,35 @@ export function CriticalAlertModal({ isOpen, onClose }: CriticalAlertModalProps)
           <div className="grid grid-cols-3 gap-2.5">
             <div className="p-3 bg-rose-50 rounded-xl border border-rose-200 text-center">
               <span className="text-slate-500 block text-[10px] uppercase font-bold">
-                Displacement
+                {t('sensor.displacement')}
               </span>
               <span className="text-xl font-extrabold text-rose-700 font-mono">
                 {node1.displacement.toFixed(2)} mm
               </span>
               <span className="text-[10px] text-rose-600 block mt-0.5 font-semibold">
-                Limit: 3.0 mm
+                {t('alerts.limit3mm')}
               </span>
             </div>
             <div className="p-3 bg-rose-50 rounded-xl border border-rose-200 text-center">
               <span className="text-slate-500 block text-[10px] uppercase font-bold">
-                Triaxial Tilt
+                {t('sensor.tilt')}
               </span>
               <span className="text-xl font-extrabold text-rose-700 font-mono">
                 {node1.tiltX.toFixed(2)}°
               </span>
               <span className="text-[10px] text-rose-600 block mt-0.5 font-semibold">
-                Critical &gt; 3.0°
+                {t('alerts.criticalTiltLimit')}
               </span>
             </div>
             <div className="p-3 bg-rose-50 rounded-xl border border-rose-200 text-center">
               <span className="text-slate-500 block text-[10px] uppercase font-bold">
-                ML Risk Score
+                {t('risk.scoreLabel')}
               </span>
               <span className="text-xl font-extrabold text-rose-700 font-mono">
                 91%
               </span>
               <span className="text-[10px] text-rose-600 block mt-0.5 font-semibold">
-                Imminent Hazard
+                {t('risk.imminentHazard')}
               </span>
             </div>
           </div>
@@ -90,20 +90,20 @@ export function CriticalAlertModal({ isOpen, onClose }: CriticalAlertModalProps)
           {/* Emergency Directives */}
           <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
             <span className="font-bold text-slate-900 block text-[11px] uppercase tracking-wider">
-              Immediate Safety Actions:
+              {t('alerts.immediateSafetyActions')}
             </span>
             <div className="space-y-1.5 text-slate-700">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-rose-600 shrink-0" />
-                <span>Audio siren triggered on Dhanbad Sector IV highwall perimeter.</span>
+                <span>{t('alerts.audioSirenTriggered')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-rose-600 shrink-0" />
-                <span>Worker PWA Emergency Push Broadcast initiated to 14 active personnel.</span>
+                <span>{t('alerts.workerBroadcastInitiated')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-rose-600 shrink-0" />
-                <span>Primary Evacuation Corridor: <strong>Ramp 2 → Assembly Point A</strong>.</span>
+                <span>{t('alerts.primaryEvacuationCorridor')}</span>
               </div>
             </div>
           </div>
@@ -115,14 +115,14 @@ export function CriticalAlertModal({ isOpen, onClose }: CriticalAlertModalProps)
             onClick={onClose}
             className="px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-200 rounded-lg transition"
           >
-            Close
+            {t('common.close')}
           </button>
           <button
             onClick={handleAcknowledgeAndDispatch}
             className="px-5 py-2 text-xs font-bold text-white bg-rose-700 hover:bg-rose-800 rounded-lg shadow-md transition flex items-center gap-2"
           >
             <ShieldAlert className="w-4 h-4" />
-            <span>Acknowledge & Confirm Protocol</span>
+            <span>{t('alerts.ackAndConfirm')}</span>
           </button>
         </div>
       </div>

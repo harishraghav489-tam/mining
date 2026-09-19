@@ -19,10 +19,10 @@ export function PwaRegister() {
       navigator.serviceWorker
         .register(swUrl, { scope: scopeUrl })
         .then((registration) => {
-          console.log('MineGuard Admin PWA SW registered successfully:', registration.scope);
+          console.log('Subsisense Admin PWA SW registered successfully:', registration.scope);
         })
         .catch((error) => {
-          console.warn('MineGuard Admin PWA SW registration failed:', error);
+          console.warn('Subsisense Admin PWA SW registration failed:', error);
         });
     }
 
@@ -81,7 +81,7 @@ export function PwaRegister() {
             <Download className="w-5 h-5" />
           </div>
           <div>
-            <h4 className="text-xs font-bold text-white">Install MineGuard Desktop App</h4>
+            <h4 className="text-xs font-bold text-white">Install Subsisense Desktop App</h4>
             <p className="text-[10px] text-slate-400">Offline geotechnical monitoring & early warning</p>
           </div>
           <div className="flex items-center gap-1.5 ml-2">
@@ -107,7 +107,7 @@ export function PwaRegister() {
       {showToast && (
         <div className="fixed bottom-4 right-4 z-[999] bg-emerald-900 text-white border border-emerald-700 shadow-2xl rounded-xl p-3 flex items-center gap-2.5 animate-in fade-in">
           <CheckCircle2 className="w-5 h-5 text-emerald-300" />
-          <span className="text-xs font-bold">MineGuard AI Desktop PWA installed successfully!</span>
+          <span className="text-xs font-bold">Subsisense AI Desktop PWA installed successfully!</span>
         </div>
       )}
     </>

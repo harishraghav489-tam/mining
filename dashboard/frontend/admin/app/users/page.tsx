@@ -62,16 +62,16 @@ export default function UsersPage() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-xl font-bold text-slate-900 tracking-tight">
-                Mine Worker & Safety PWA Management
+                {t('users.pageTitle')}
               </h1>
               <p className="text-xs text-slate-500">
-                14 Active Personnel in Zone 01 • Real-time emergency evacuation broadcast recipients
+                {t('users.pageSubtitle')}
               </p>
             </div>
             <div className="flex items-center gap-2">
               <span className="px-3 py-1 bg-emerald-100 text-emerald-800 border border-emerald-300 rounded-md text-xs font-bold flex items-center gap-1.5">
                 <UserCheck className="w-3.5 h-3.5" />
-                14/14 Workers PWA Synced
+                {t('users.syncedBadge')}
               </span>
             </div>
           </div>
@@ -79,19 +79,19 @@ export default function UsersPage() {
           {/* Workers Table */}
           <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
             <div className="px-5 py-3 border-b border-slate-200 bg-slate-50 font-bold text-xs text-slate-900 uppercase">
-              Registered Field Personnel (Zone 01)
+              {t('users.tableTitle')}
             </div>
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs">
                 <thead>
                   <tr className="border-b border-slate-200 bg-slate-50 text-slate-500 font-semibold text-[10px] uppercase">
-                    <th className="py-2.5 px-4">Employee ID</th>
-                    <th className="py-2.5 px-4">Worker Name</th>
-                    <th className="py-2.5 px-4">Designation</th>
-                    <th className="py-2.5 px-4">Assigned Mine Zone</th>
-                    <th className="py-2.5 px-4">Contact Phone</th>
-                    <th className="py-2.5 px-4 text-center">PWA Status</th>
-                    <th className="py-2.5 px-4 text-right">Last Alert Seen</th>
+                    <th className="py-2.5 px-4">{t('users.empIdCol')}</th>
+                    <th className="py-2.5 px-4">{t('users.workerNameCol')}</th>
+                    <th className="py-2.5 px-4">{t('users.designationCol')}</th>
+                    <th className="py-2.5 px-4">{t('users.zoneCol')}</th>
+                    <th className="py-2.5 px-4">{t('users.phoneCol')}</th>
+                    <th className="py-2.5 px-4 text-center">{t('users.pwaStatusCol')}</th>
+                    <th className="py-2.5 px-4 text-right">{t('users.lastAlertSeenCol')}</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 font-medium">

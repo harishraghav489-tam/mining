@@ -28,7 +28,7 @@ export function UserDesktopSidebar() {
         </div>
         <div>
           <div className="flex items-center gap-1.5">
-            <span className="font-extrabold text-base tracking-tight text-slate-900">MINEGUARD</span>
+            <span className="font-extrabold text-base tracking-tight text-slate-900">SUBSISENSE</span>
             <span className="text-[10px] font-bold px-1.5 py-0.2 rounded bg-mineguard-100 text-mineguard-900">
               PWA
             </span>

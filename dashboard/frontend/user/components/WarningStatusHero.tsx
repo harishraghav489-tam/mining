@@ -21,7 +21,7 @@ export function WarningStatusHero({ onViewMap }: WarningStatusHeroProps) {
         </h2>
         <p className="text-xs text-amber-700 font-semibold mt-0.5 flex items-center gap-1.5">
           <AlertTriangle className="w-3.5 h-3.5" />
-          <span>Elevated Caution Advised</span>
+          <span>{t('user.elevatedCaution')}</span>
         </p>
       </div>
 
@@ -54,7 +54,7 @@ export function WarningStatusHero({ onViewMap }: WarningStatusHeroProps) {
           onClick={onViewMap}
           className="w-full py-3 px-4 rounded-2xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs shadow-xs transition flex items-center justify-center gap-2"
         >
-          <span>View Evacuation Protocol & Safety Procedure</span>
+          <span>{t('user.warningCard.viewProcedure')}</span>
           <ArrowRight className="w-3.5 h-3.5" />
         </button>
       </div>

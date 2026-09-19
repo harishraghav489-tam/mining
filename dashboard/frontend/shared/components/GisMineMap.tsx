@@ -474,17 +474,17 @@ export function GisMineMap({
           <div className="min-w-0">
             <div className="flex items-center gap-1.5 flex-wrap">
               <span className="text-[11px] sm:text-xs font-extrabold text-white tracking-wide uppercase truncate">
-                {isUserView ? 'Sentinel-1 InSAR Mine Map' : 'Sentinel-1 InSAR Satellite Map'}
+                {isUserView ? t('map.mineMapTitle') : t('map.satelliteMapTitle')}
               </span>
               <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-slate-800 text-slate-300 border border-slate-700">
-                Minimized
+                {t('map.minimized')}
               </span>
               <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-emerald-950 text-emerald-400 border border-emerald-800/60 font-bold hidden sm:inline">
-                Active ({activeZone})
+                {t('map.activeZoneLabel', { zone: activeZone })}
               </span>
             </div>
             <p className="text-[9px] sm:text-[10px] text-slate-400 font-medium truncate">
-              InSAR Subsidence Heatmap • Click expand or maximize to restore live view
+              {t('map.minimizedDesc')}
             </p>
           </div>
         </div>
@@ -531,19 +531,19 @@ export function GisMineMap({
           <div>
             <div className="flex items-center gap-1.5">
               <span className="text-[11px] sm:text-xs font-extrabold text-white tracking-wide uppercase">
-                {isUserView ? 'Sentinel-1 InSAR Mine Map' : 'Sentinel-1 InSAR Satellite Map'}
+                {isUserView ? t('map.mineMapTitle') : t('map.satelliteMapTitle')}
               </span>
               <span className="text-[9px] font-mono px-1 rounded bg-emerald-950 text-emerald-400 border border-emerald-800/60 font-bold hidden sm:inline">
-                LOS Radar
+                {t('map.losRadar')}
               </span>
               {isMaximized && (
                 <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-rose-950 text-rose-300 border border-rose-800 font-bold animate-pulse">
-                  FULLSCREEN [ESC]
+                  {t('map.fullscreenEsc')}
                 </span>
               )}
             </div>
             <p className="text-[9px] sm:text-[10px] text-slate-400 font-medium">
-              {isUserView ? 'Live Sector Safety & Evacuation Path' : 'InSAR Subsidence Heatmap • 9 Nodes'}
+              {isUserView ? t('map.liveSectorSafety') : t('map.insarSubsidenceHeatmap9Nodes')}
             </p>
           </div>
         </div>

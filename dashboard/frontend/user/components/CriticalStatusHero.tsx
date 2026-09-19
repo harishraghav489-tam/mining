@@ -27,7 +27,7 @@ export function CriticalStatusHero({ onViewSafeRoute }: CriticalStatusHeroProps)
         </h2>
         <p className="text-xs text-rose-700 font-extrabold mt-0.5 flex items-center gap-1.5 animate-pulse">
           <Flame className="w-3.5 h-3.5 text-rose-600" />
-          <span>EMERGENCY SAFETY DIRECTIVE IN EFFECT</span>
+          <span>{t('user.emergencyDirective')}</span>
         </p>
       </div>
 

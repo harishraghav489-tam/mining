@@ -1,4 +1,4 @@
-# MineGuard AI — Industrial Mining Safety & Early Warning Platform
+# Subsisense AI — Industrial Mining Safety & Early Warning Platform
 
 > **"Safer Mines. Smarter Tomorrow."**  
 > *Prototype Demonstration for Smart India Hackathon (SIH) 2026*
@@ -7,7 +7,7 @@
 
 ## 📖 Executive Summary
 
-**MineGuard AI** is a geotechnical monitoring and early-warning safety platform designed to prevent open-cast mine slope collapses and highwall failures. The platform connects IoT field sensing (physical ESP32 Node 01, simulated Nodes 02 & 03, BNO055 triaxial tilt sensor, displacement transducer, LoRa wireless transmission, Raspberry Pi Gateway) through Machine Learning risk analysis and an LLM contextual explanation layer into two purpose-built frontends:
+**Subsisense AI** is a geotechnical monitoring and early-warning safety platform designed to prevent open-cast mine slope collapses and highwall failures. The platform connects IoT field sensing (physical ESP32 Node 01, simulated Nodes 02 & 03, BNO055 triaxial tilt sensor, displacement transducer, LoRa wireless transmission, Raspberry Pi Gateway) through Machine Learning risk analysis and an LLM contextual explanation layer into two purpose-built frontends:
 
 1. **Admin Dashboard (Port 3000)**: Desktop-first analytical command center for geotechnical engineers, site supervisors, and mine administrators.
 2. **Worker Safety PWA (Port 3001)**: Mobile-first safety companion answering **"AM I SAFE?"** and providing instant evacuation guidance along **Ramp 2 → Assembly Point A** for field personnel.
@@ -22,7 +22,7 @@ ESP32 (Physical Node 01)  +  Simulated Nodes (02 & 03)
             ▼ (LoRa Wireless Telemetry 868MHz)
 Raspberry Pi Gateway 01
             │
-            ▼ (MQTT Broker: mineguard/dhanbad/zone01)
+            ▼ (MQTT Broker: subsisense/dhanbad/zone01)
 Backend Ingestion & Database (FastAPI + TimescaleDB)
             │
             ▼
@@ -83,7 +83,7 @@ dashboard/
 
 ## 🎨 Global Design System
 
-- **Brand Primary**: Deep Maroon / MineGuard Red (`#7F1D1D` / `#991B1B`)
+- **Brand Primary**: Deep Maroon / Subsisense Red (`#7F1D1D` / `#991B1B`)
 - **Status Safe**: Soft Emerald Green (`#F0FDF4`, `#10B981`)
 - **Status Warning**: Soft Amber (`#FFFBEB`, `#F59E0B`)
 - **Status Critical**: Emergency Red (`#FEF2F2`, `#DC2626`)
@@ -153,10 +153,10 @@ The evaluation controller in the header allows judges to test the reactive data 
 
 When integrating live hardware:
 1. Replace `services/dashboardService.ts` and `services/nodeService.ts` with FastAPI REST calls (`GET /api/v1/telemetry/live`).
-2. Connect WebSocket/MQTT subscribers to the Raspberry Pi LoRa broker topic: `mineguard/dhanbad/zone01/telemetry`.
+2. Connect WebSocket/MQTT subscribers to the Raspberry Pi LoRa broker topic: `subsisense/dhanbad/zone01/telemetry`.
 3. Ingest automated satellite InSAR GeoTIFF products from Sentinel-1 & NISAR open science portals into the GIS layer.
 
 ---
 
-**MineGuard AI Team**  
+**Subsisense AI Team**  
 *Smart India Hackathon 2026*

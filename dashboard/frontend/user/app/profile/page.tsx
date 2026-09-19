@@ -56,12 +56,12 @@ export default function ProfilePage() {
                 {t('user.profilePage.title')}
               </h1>
               <p className="text-xs text-slate-500 mt-0.5">
-                Worker safety registration & emergency credentials
+                {t('user.profilePage.subtitle')}
               </p>
             </div>
             {saved && (
               <span className="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-lg text-xs font-bold animate-in fade-in">
-                Saved!
+                {t('common.saved')}
               </span>
             )}
           </div>
@@ -79,7 +79,7 @@ export default function ProfilePage() {
                   {state.workerProfile.employeeId}
                 </span>
                 <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] font-bold rounded">
-                  Active Shift
+                  {t('user.profilePage.activeShift')}
                 </span>
               </div>
             </div>
@@ -167,7 +167,7 @@ export default function ProfilePage() {
             {editing ? (
               <form onSubmit={handleSave} className="bg-white p-4 rounded-2xl border border-slate-200 space-y-3 text-xs">
                 <div>
-                  <label className="block text-slate-600 font-bold mb-1">Name</label>
+                  <label className="block text-slate-600 font-bold mb-1">{t('users.workerNameCol')}</label>
                   <input
                     type="text"
                     value={nameInput}
@@ -176,7 +176,7 @@ export default function ProfilePage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-600 font-bold mb-1">Phone</label>
+                  <label className="block text-slate-600 font-bold mb-1">{t('users.phoneCol')}</label>
                   <input
                     type="text"
                     value={phoneInput}
@@ -189,14 +189,14 @@ export default function ProfilePage() {
                     type="submit"
                     className="flex-1 py-2 bg-slate-900 text-white font-bold rounded-lg"
                   >
-                    Save
+                    {t('common.save')}
                   </button>
                   <button
                     type="button"
                     onClick={() => setEditing(false)}
                     className="px-4 py-2 border rounded-lg"
                   >
-                    Cancel
+                    {t('common.cancel')}
                   </button>
                 </div>
               </form>

@@ -19,16 +19,16 @@ export default function ReportsPage() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-xl font-bold text-slate-900 tracking-tight">
-                DGMS Safety Compliance Reports
+                {t('reports.pageTitle')}
               </h1>
               <p className="text-xs text-slate-500">
-                Automated geotechnical audit dossiers & shift safety certification
+                {t('reports.pageSubtitle')}
               </p>
             </div>
             <div className="flex items-center gap-2">
               <button className="px-3 py-1.5 bg-mineguard-800 text-white rounded-lg text-xs font-bold flex items-center gap-1.5 hover:bg-mineguard-900 transition shadow-sm">
                 <Download className="w-3.5 h-3.5" />
-                <span>Export PDF Summary</span>
+                <span>{t('common.exportPdf')}</span>
               </button>
             </div>
           </div>
@@ -37,48 +37,48 @@ export default function ReportsPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-sm space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-slate-900">Daily Geotechnical Shift Report</span>
-                <span className="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">READY</span>
+                <span className="text-xs font-bold text-slate-900">{t('reports.dailyReportTitle')}</span>
+                <span className="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">{t('common.ready')}</span>
               </div>
               <p className="text-xs text-slate-500">
-                Continuous 24-hour sensor telemetry logs from ESP32 Node 01 and Gateway 01.
+                {t('reports.dailyReportDesc')}
               </p>
               <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
                 <span className="text-slate-400">03 Sep 2026</span>
                 <button className="text-mineguard-800 font-bold hover:underline flex items-center gap-1">
-                  <Download className="w-3 h-3" /> Download
+                  <Download className="w-3 h-3" /> {t('common.download')}
                 </button>
               </div>
             </div>
 
             <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-sm space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-slate-900">InSAR Satellite Interferometry Pass</span>
-                <span className="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">READY</span>
+                <span className="text-xs font-bold text-slate-900">{t('reports.insarReportTitle')}</span>
+                <span className="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">{t('common.ready')}</span>
               </div>
               <p className="text-xs text-slate-500">
-                Sentinel-1 & NISAR multi-temporal baseline displacement comparison for Sector IV.
+                {t('reports.insarReportDesc')}
               </p>
               <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
                 <span className="text-slate-400">12-Day Cycle</span>
                 <button className="text-mineguard-800 font-bold hover:underline flex items-center gap-1">
-                  <Download className="w-3 h-3" /> Download
+                  <Download className="w-3 h-3" /> {t('common.download')}
                 </button>
               </div>
             </div>
 
             <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-sm space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-slate-900">Incident & Siren Audit Log</span>
-                <span className="text-[10px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-bold">UPDATED</span>
+                <span className="text-xs font-bold text-slate-900">{t('reports.auditLogTitle')}</span>
+                <span className="text-[10px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-bold">{t('common.updated')}</span>
               </div>
               <p className="text-xs text-slate-500">
-                Timestamped records of all threshold breaches, siren activations, and worker acknowledgements.
+                {t('reports.auditLogDesc')}
               </p>
               <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
                 <span className="text-slate-400">Live Audit Log</span>
                 <button className="text-mineguard-800 font-bold hover:underline flex items-center gap-1">
-                  <Download className="w-3 h-3" /> Download
+                  <Download className="w-3 h-3" /> {t('common.download')}
                 </button>
               </div>
             </div>

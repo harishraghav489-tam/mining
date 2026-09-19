@@ -21,7 +21,7 @@ export function KpiCards() {
       <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between">
         <div className="flex items-center justify-between text-slate-500">
           <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
-            Active Sensor Nodes
+            {t('kpis.activeSensorNodes')}
           </span>
           <div className="w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700">
             <Cpu className="w-4 h-4" />
@@ -30,7 +30,7 @@ export function KpiCards() {
         <div className="mt-2 flex items-baseline gap-2">
           <span className="text-3xl font-extrabold text-slate-900 tracking-tight">{totalNodes}</span>
           <span className="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-            3 Nodes / Zone
+            {t('kpis.nodesPerZone', { count: 3 })}
           </span>
         </div>
         <p className="mt-2 text-xs text-slate-400">BNO055 • ADXL345 • VL53L0X</p>
@@ -48,7 +48,7 @@ export function KpiCards() {
       >
         <div className="flex items-center justify-between text-slate-500">
           <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
-            Subsidence Alerts
+            {t('kpis.subsidenceAlerts')}
           </span>
           <div
             className={`w-8 h-8 rounded-xl flex items-center justify-center ${
@@ -81,11 +81,11 @@ export function KpiCards() {
             {activeAlerts}
           </span>
           <span className="text-xs font-semibold text-slate-500">
-            {criticalCount} Critical • {warningCount} Warning
+            {t('kpis.alertsSummary', { critical: criticalCount, warning: warningCount })}
           </span>
         </div>
         <p className="mt-2 text-xs text-slate-400">
-          {activeAlerts === 0 ? 'Normal ground equilibrium' : 'Displacement threshold breach'}
+          {activeAlerts === 0 ? t('kpis.normalEquilibrium') : t('kpis.thresholdBreach')}
         </p>
       </div>
 
@@ -101,7 +101,7 @@ export function KpiCards() {
       >
         <div className="flex items-center justify-between text-slate-500">
           <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
-            Subsidence Risk Score
+            {t('kpis.subsidenceRiskScore')}
           </span>
           <div className="w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700">
             <Activity className="w-4 h-4" />
@@ -128,17 +128,17 @@ export function KpiCards() {
                 : 'bg-emerald-100 text-emerald-800'
             }`}
           >
-            {riskScore >= 80 ? 'CRITICAL' : riskScore >= 40 ? 'WARNING' : 'SAFE'}
+            {riskScore >= 80 ? t('status.critical') : riskScore >= 40 ? t('status.warning') : t('status.safe')}
           </span>
         </div>
-        <p className="mt-2 text-xs text-slate-400">Max Disp: {maxSubsidence.toFixed(2)} mm</p>
+        <p className="mt-2 text-xs text-slate-400">{t('kpis.maxDisp', { val: maxSubsidence.toFixed(2) })}</p>
       </div>
 
       {/* 4. Monitored Pit Zones */}
       <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between">
         <div className="flex items-center justify-between text-slate-500">
           <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
-            Mining Sectors
+            {t('kpis.miningSectors')}
           </span>
           <div className="w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700">
             <Layers className="w-4 h-4" />
@@ -147,10 +147,10 @@ export function KpiCards() {
         <div className="mt-2 flex items-baseline gap-2">
           <span className="text-3xl font-extrabold text-slate-900 tracking-tight">{totalZones}</span>
           <span className="text-xs font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded-full">
-            Active Zones
+            {t('kpis.activeZones')}
           </span>
         </div>
-        <p className="mt-2 text-xs text-slate-400">28 Active mine personnel</p>
+        <p className="mt-2 text-xs text-slate-400">{t('kpis.activePersonnel', { count: 28 })}</p>
       </div>
     </div>
   );

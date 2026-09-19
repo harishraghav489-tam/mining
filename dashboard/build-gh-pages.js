@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-console.log('🚀 Building MineGuard AI for GitHub Pages with full asset routing...');
+console.log('🚀 Building Subsisense AI for GitHub Pages with full asset routing...');
 
 const rootDir = __dirname;
 const outDir = path.join(rootDir, 'out-pages');
@@ -40,7 +40,7 @@ const landingHtml = `<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MINEGUARD AI | Multi-Zone Mining Subsidence & Safety Platform</title>
+  <title>SUBSISENSE AI | Multi-Zone Mining Subsidence & Safety Platform</title>
   <link rel="icon" type="image/png" href="./admin/favicon.png">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
@@ -57,11 +57,11 @@ const landingHtml = `<!DOCTYPE html>
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-700 to-rose-950 flex items-center justify-center font-black text-white text-lg shadow-lg border border-rose-600/40">
-          MG
+          SS
         </div>
         <div>
           <div class="flex items-center gap-2">
-            <span class="font-extrabold text-base tracking-tight text-white">MINEGUARD AI</span>
+            <span class="font-extrabold text-base tracking-tight text-white">SUBSISENSE AI</span>
             <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-rose-950/80 text-rose-300 border border-rose-800/60">SIH 2026</span>
           </div>
           <p class="text-xs text-slate-400">Mining Subsidence & Geotechnical Safety Platform</p>
@@ -189,7 +189,7 @@ const landingHtml = `<!DOCTYPE html>
   <!-- Footer -->
   <footer class="border-t border-slate-800/80 bg-slate-950 px-6 py-6 text-center text-xs text-slate-500">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
-      <p>MineGuard AI • Smart India Hackathon (SIH) 2026 Prototype</p>
+      <p>Subsisense AI • Smart India Hackathon (SIH) 2026 Prototype</p>
       <div class="flex items-center gap-4 text-[11px]">
         <a href="./admin/" class="text-slate-400 hover:text-white">Admin Center</a>
         <span>•</span>

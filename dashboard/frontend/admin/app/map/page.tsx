@@ -20,17 +20,17 @@ export default function MapPage() {
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
               <h1 className="text-xl font-bold text-slate-900 tracking-tight">
-                Sentinel-1 InSAR Satellite Geotechnical Map
+                {t('map.title')}
               </h1>
               <p className="text-xs text-slate-500">
-                Leaflet InSAR Satellite SDK • Sentinel-1 SAR Subsidence Heatmap • 9 Field IoT Nodes (BNO055 + ADXL-345 + VL53L0X)
+                {t('map.mapSubtitle')}
               </p>
             </div>
 
             <div className="flex items-center gap-2">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 text-xs font-bold">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                Live Satellite Stream Active
+                {t('map.radarActiveStream')}
               </span>
             </div>
           </div>

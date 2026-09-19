@@ -70,7 +70,7 @@ export function AdminSidebar() {
           </div>
           <div>
             <div className="flex items-center gap-1.5">
-              <span className="font-bold text-lg tracking-tight text-white">MINEGUARD</span>
+              <span className="font-bold text-lg tracking-tight text-white">SUBSISENSE</span>
               <span className="text-xs font-semibold px-1.5 py-0.5 rounded bg-mineguard-800/80 text-rose-200 border border-mineguard-700">
                 AI
               </span>
